@@ -27,6 +27,7 @@ public class TerrainGrid : MonoBehaviour {
           UpdatePosition();
           UpdateHeights();
           UpdateCells();
+          if (Input.GetMouseButtonDown(0) && GlobalVariables.CanFixItem && GlobalVariables.ItemToDrag != null) FixItem(); 
      }
 
      GameObject CreateChild() {
@@ -100,16 +101,23 @@ public class TerrainGrid : MonoBehaviour {
      }
 
      void UpdateCells() {
+          GlobalVariables.CanFixItem = true;
+
           for (int z = 0; z < gridHeight; z++) {
                for (int x = 0; x < gridWidth; x++) {
                     GameObject cell = _cells[z * gridWidth + x];
                     MeshRenderer meshRenderer = cell.GetComponent<MeshRenderer>();
                     MeshFilter meshFilter = cell.GetComponent<MeshFilter>();
 
-                    meshRenderer.material = IsCellValid(x, z) ? cellMaterialValid : cellMaterialInvalid;
+                    bool isCellValid = IsCellValid(x, z);
+
+                    meshRenderer.material = isCellValid ? cellMaterialValid : cellMaterialInvalid;
+
+                    if (!isCellValid) GlobalVariables.CanFixItem = false;
+
                     UpdateMesh(meshFilter.mesh, x, z);
                }
-          }
+          }          
      }
 
      bool IsCellValid(int x, int z) {
@@ -143,5 +151,18 @@ public class TerrainGrid : MonoBehaviour {
 
      Vector3 MeshVertex(int x, int z) {
           return new Vector3(x * cellSize, _heights[z * (gridWidth + 1) + x] + yOffset, z * cellSize);
+     }
+
+     private void FixItem() {
+          Debug.Log(string.Format("Poniendo {0}", GlobalVariables.ItemToDrag.name));
+
+          RaycastHit hitInfo;
+          Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+          Physics.Raycast(ray, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Terrain"));
+          Vector3 pos = new Vector3(hitInfo.point.x, hitInfo.point.y + GlobalVariables.YItemPosition, hitInfo.point.z);
+          Instantiate(GlobalVariables.ItemToDrag, pos, Quaternion.Euler(GlobalVariables.RotationItem));
+
+          GlobalVariables.ItemToDrag = null;
+          GlobalVariables.RotationItem = new Vector3();
      }
 }

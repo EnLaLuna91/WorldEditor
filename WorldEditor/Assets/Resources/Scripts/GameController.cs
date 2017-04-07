@@ -18,6 +18,11 @@ public class GameController : MonoBehaviour {
           InicializeMenu();
           
           levels = new Stack<GameObject>();
+
+          GlobalVariables.CanFixItem = true;
+          GlobalVariables.ItemToDrag = null;
+          GlobalVariables.RotationItem = new Vector3();
+          GlobalVariables.YItemPosition = 0.0f;
      }
 
      #region Menus Behavior
