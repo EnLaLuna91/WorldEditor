@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class fixItem2 : MonoBehaviour {
      public GameObject itemToFix;
+     public string CustomTag = "";
      public Vector3 RotationItem;
      public float YItemPosition;
 
@@ -16,9 +15,12 @@ public class fixItem2 : MonoBehaviour {
      }
 
      private void TaskOnClick() {
-          GlobalVariables.ItemToDrag = itemToFix;
-          GlobalVariables.RotationItem = RotationItem;
-          GlobalVariables.YItemPosition = YItemPosition;
-          Debug.Log(string.Format("Activando {0}", gameObject.name));
+          if (itemToFix != null) {
+               GlobalVariables.ItemToDrag = itemToFix;
+               if (CustomTag != "") GlobalVariables.CustomTag = CustomTag;
+               GlobalVariables.RotationItem = RotationItem;
+               GlobalVariables.YItemPosition = YItemPosition;         
+          }
+          //Debug.Log(string.Format("Activando {0}", gameObject.name));
      }
 }

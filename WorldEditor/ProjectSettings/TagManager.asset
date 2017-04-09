@@ -7,6 +7,12 @@ TagManager:
   - UIActivable
   - subMenu
   - mainMenu
+  - Terrain
+  - Item
+  - FX
+  - Resources
+  - Objectives
+  - NPCs
   layers:
   - Default
   - TransparentFX

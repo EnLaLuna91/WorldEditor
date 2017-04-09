@@ -15,15 +15,30 @@ public class GameController : MonoBehaviour {
      private Stack<GameObject> levels;
 
      private void Start() {
+          InicialiceGlobalVarialbes();
           InicializeMenu();
           
           levels = new Stack<GameObject>();
+     }
 
+     private void InicialiceGlobalVarialbes() {
           GlobalVariables.CanFixItem = true;
           GlobalVariables.ItemToDrag = null;
+          GlobalVariables.CustomTag = "";
           GlobalVariables.RotationItem = new Vector3();
           GlobalVariables.YItemPosition = 0.0f;
+
+          GlobalVariables.TerrainIsLoad = false;
+          GlobalVariables.ObjectivesIsSelected = false;
+          GlobalVariables.ResourcesIsSelected = false;
+          GlobalVariables.FxIsSelected = false;
+
+          GlobalVariables.ItemsIsSelected = false;
+          GlobalVariables.NPCsIsSelected = false;
+          GlobalVariables.SkyIsSelected = false;
+          GlobalVariables.MaterialIsSelected = false;
      }
+
 
      #region Menus Behavior
 

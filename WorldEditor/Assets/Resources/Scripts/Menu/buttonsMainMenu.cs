@@ -150,6 +150,7 @@ public class buttonsMainMenu : MonoBehaviour {
      private void ExitButton() {
           Debug.Log("Leave");
      }
-     
+
      #endregion
+     
 }
