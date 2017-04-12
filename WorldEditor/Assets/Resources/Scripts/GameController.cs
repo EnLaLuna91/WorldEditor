@@ -23,10 +23,6 @@ public class GameController : MonoBehaviour {
 
      private void InicialiceGlobalVarialbes() {
           GlobalVariables.CanFixItem = true;
-          GlobalVariables.ItemToDrag = null;
-          GlobalVariables.CustomTag = "";
-          GlobalVariables.RotationItem = new Vector3();
-          GlobalVariables.YItemPosition = 0.0f;
 
           GlobalVariables.TerrainIsLoad = false;
           GlobalVariables.ObjectivesIsSelected = false;
@@ -37,6 +33,9 @@ public class GameController : MonoBehaviour {
           GlobalVariables.NPCsIsSelected = false;
           GlobalVariables.SkyIsSelected = false;
           GlobalVariables.MaterialIsSelected = false;
+
+          GlobalVariables.IsShiftPressed = false;
+          GlobalVariables.IsCtrlPressed = false;
      }
 
 
@@ -111,4 +110,13 @@ public class GameController : MonoBehaviour {
      }
 
      #endregion
+
+     void OnGUI() {
+          Event e = Event.current;
+          if (e.shift) GlobalVariables.IsShiftPressed = true;
+          else GlobalVariables.IsShiftPressed = false;
+
+          if (e.control) GlobalVariables.IsCtrlPressed = true;
+          else GlobalVariables.IsCtrlPressed = false;
+     }
 }

@@ -27,7 +27,6 @@ public class TerrainGrid : MonoBehaviour {
           UpdatePosition();
           UpdateHeights();
           UpdateCells();
-          if (Input.GetMouseButtonDown(0) && GlobalVariables.CanFixItem && GlobalVariables.ItemToDrag != null) FixItem(); 
      }
 
      GameObject CreateChild() {
@@ -153,27 +152,5 @@ public class TerrainGrid : MonoBehaviour {
           return new Vector3(x * cellSize, _heights[z * (gridWidth + 1) + x] + yOffset, z * cellSize);
      }
 
-     private void FixItem() {
-          //Debug.Log(string.Format("Poniendo {0}", GlobalVariables.ItemToDrag.name));
-
-          RaycastHit hitInfo;
-          Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-          Physics.Raycast(ray, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Terrain"));
-          Vector3 pos = new Vector3(hitInfo.point.x, hitInfo.point.y + GlobalVariables.YItemPosition, hitInfo.point.z);
-          GameObject obj = Instantiate(GlobalVariables.ItemToDrag, pos, Quaternion.Euler(GlobalVariables.RotationItem)) as GameObject;
-          
-          if (GlobalVariables.CustomTag != "") obj.tag = GlobalVariables.CustomTag;
-
-          if (obj.tag == "Objectives") GlobalVariables.ObjectivesIsSelected = true;
-          if (obj.tag == "Resources") GlobalVariables.ResourcesIsSelected = true;
-          if (obj.tag == "Item") GlobalVariables.ItemsIsSelected = true;
-          if (obj.tag == "NPCs") GlobalVariables.NPCsIsSelected = true;
-
-          //Debug.Log(string.Format("Object name: {0}\tObject tag: {1}", obj.name, obj.tag));
-
-          GlobalVariables.ItemToDrag = null;
-          GlobalVariables.CustomTag = "";
-          GlobalVariables.RotationItem = new Vector3();
-          GlobalVariables.YItemPosition = 0.0f;
-     }
+     
 }
