@@ -50,7 +50,7 @@ public class fixItem2 : MonoBehaviour {
                RotationItem.y = 0;
           }
 
-          Debug.Log(string.Format("ReadyToFix: {0}", ReadyToFix));
+          //Debug.Log(string.Format("ReadyToFix: {0}", ReadyToFix));
      }
 
      private void RotateItem() {
@@ -59,16 +59,8 @@ public class fixItem2 : MonoBehaviour {
           else RotationItem.y += 90;
 
           if (RotationItem.y >= 360 || RotationItem.y <= -360) RotationItem.y = 0;
-          Debug.Log(string.Format("Rotation: {0}", RotationItem));
+          //Debug.Log(string.Format("Rotation: {0}", RotationItem));
      }
-
      
-
-     //private void OnGUI() {
-     //     Event e = Event.current;
-     //     Debug.Log(string.Format("Event.current: {0}\te.isKey: {1}", e, e.isKey));
-     //     if (e.isKey)
-     //          Debug.Log(string.Format("e.keyCOde: {0}", e.keyCode));
-     //}
 
 }

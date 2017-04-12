@@ -36,6 +36,9 @@ public class GameController : MonoBehaviour {
 
           GlobalVariables.IsShiftPressed = false;
           GlobalVariables.IsCtrlPressed = false;
+
+          GlobalVariables.YouWin = false;
+          GlobalVariables.GameOver = false;
      }
 
 

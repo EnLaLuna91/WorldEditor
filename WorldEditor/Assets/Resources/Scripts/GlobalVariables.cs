@@ -16,4 +16,7 @@ public static class GlobalVariables {
 
      public static bool IsShiftPressed { get; set; }
      public static bool IsCtrlPressed { get; set; }
+
+     public static bool YouWin { get; set; }
+     public static bool GameOver { get; set; }
 }

@@ -29,7 +29,7 @@ public class FX : MonoBehaviour {
      private void Update() {
           if (Input.GetMouseButtonDown(0) && GlobalVariables.CanFixItem && ReadyToFix) InsertFX();
 
-          if (isInsert) ActiveFX();
+          if (isInsert && (GlobalVariables.YouWin || GlobalVariables.GameOver)) ActiveFX();
      }
 
      private void InsertFX() {
@@ -47,8 +47,13 @@ public class FX : MonoBehaviour {
      }
 
      private void ActiveFX() {
-          GameObject obj = Instantiate(Effect, pos, Quaternion.identity) as GameObject;
-
-          obj.transform.localScale = ScaleFx;
+          if (Win) {
+               GameObject obj = Instantiate(Effect, pos, Quaternion.identity) as GameObject;
+               obj.transform.localScale = ScaleFx;
+          }
+          if (Lose) {
+               GameObject obj = Instantiate(Effect, pos, Quaternion.identity) as GameObject;
+               obj.transform.localScale = ScaleFx;
+          }
      }
 }
