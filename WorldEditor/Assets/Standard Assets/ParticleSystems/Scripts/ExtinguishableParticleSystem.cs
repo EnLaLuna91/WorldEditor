@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 
@@ -21,8 +20,7 @@ namespace UnityStandardAssets.Effects
         {
             foreach (var system in m_Systems)
             {
-                var emission = system.emission;
-                emission.enabled = false;
+                system.enableEmission = false;
             }
         }
     }

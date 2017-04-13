@@ -17,8 +17,13 @@ namespace UnityStandardAssets.Utility
 
 		[SerializeField]
 		private float rotationDamping;
+
 		[SerializeField]
 		private float heightDamping;
+
+		[SerializeField]
+		private bool rotationActive = true;
+
 
 		// Use this for initialization
 		void Start() { }
@@ -54,8 +59,9 @@ namespace UnityStandardAssets.Utility
 			// Set the height of the camera
 			transform.position = new Vector3(transform.position.x ,currentHeight , transform.position.z);
 
-			// Always look at the target
-			transform.LookAt(target);
+			transform.LookAt (target);
+
 		}
+
 	}
 }
