@@ -23,9 +23,11 @@ public class loadTerrain : MonoBehaviour {
      }
 
      private void RemoveTerrain() {
-          GameObject map = GameObject.FindGameObjectWithTag("Terrain");
-          //Debug.Log(string.Format("Terrain name: {0}", map.name));
-          Destroy(map);
+          GameObject[] maps = GameObject.FindGameObjectsWithTag("Terrain");
+          foreach(GameObject map in maps) {
+               Debug.Log(string.Format("Terrain name: {0}", map.name));
+               Destroy(map);               
+          }              
           GlobalVariables.TerrainIsLoad = false;
           RemoveAllItemsOnMap();
           RemoveAllFXsOnMap();
