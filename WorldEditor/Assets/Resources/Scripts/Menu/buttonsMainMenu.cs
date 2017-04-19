@@ -99,10 +99,6 @@ public class buttonsMainMenu : MonoBehaviour {
      private void TaskOnClick() {
           if (MenuToActive != null) ActiveSubMenu();
           else if (gameObject.name == "BackButton") BackManu();
-          else if (gameObject.name == "SaveButton") SaveButton();
-          else if (gameObject.name == "LoadButton") LoadButton();
-          else if (gameObject.name == "StartButton") StartButton();
-          else if (gameObject.name == "ExitButton") ExitButton();
           else DisableSubMenus();
      }
 
@@ -135,21 +131,7 @@ public class buttonsMainMenu : MonoBehaviour {
           }
      }
 
-     private void SaveButton() {
-          Debug.Log("Save");
-     }
-
-     private void LoadButton() {
-          Debug.Log("Load");
-     }
-
-     private void StartButton() {
-          Debug.Log("Start");
-     }
-
-     private void ExitButton() {
-          Debug.Log("Leave");
-     }
+     
 
      #endregion
      
