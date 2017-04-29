@@ -43,12 +43,13 @@ public class fixItem2 : MonoBehaviour {
           if (obj.tag == "Item") GlobalVariables.ItemsIsSelected = true;
           if (obj.tag == "NPCs") GlobalVariables.NPCsIsSelected = true;
 
-          Debug.Log(string.Format("Obj.layer: {0}\tLayer: {1}", LayerMask.LayerToName(obj.layer), Layer));
+          //Debug.Log(string.Format("Obj.layer: {0}\tLayer: {1}", LayerMask.LayerToName(obj.layer), Layer));
 
           if (GlobalVariables.IsCtrlPressed) ReadyToFix = true;
           else {
                ReadyToFix = false;
                RotationItem.y = 0;
+               obj = null;
           }
 
           //Debug.Log(string.Format("ReadyToFix: {0}", ReadyToFix));
@@ -63,7 +64,7 @@ public class fixItem2 : MonoBehaviour {
 
           obj.transform.rotation = Quaternion.Euler(RotationItem);
 
-          Debug.Log(string.Format("Rotation: {0}", RotationItem));
+          //Debug.Log(string.Format("Rotation: {0}", RotationItem));
      }
      
      private Vector3 RayCast() {
@@ -74,8 +75,7 @@ public class fixItem2 : MonoBehaviour {
           else return new Vector3(0, 0, 0);
      }
 
-     private void ShowItem() {
-          
+     private void ShowItem() {          
           Vector3 pos = RayCast();
           if (pos != new Vector3(0, 0, 0)) {
                if (obj == null) {

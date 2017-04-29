@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Utils;
 using System.Collections.Generic;
+using UnityEditor;
 
 namespace Items
 {
@@ -43,14 +44,14 @@ namespace Items
         {
             _id = id;
             _name = name;
-            _inventoryRepresentation = (Sprite) Resources.Load("Media/Images/"+image, typeof(Sprite));
-        }
+            _inventoryRepresentation = (Sprite) AssetDatabase.LoadAssetAtPath("Assets/Fracsland/Resources/Media/Images/" + image, typeof(Sprite));
+          }
 
         public Item(int id, string name, bool isConsumible, string image, int goldAmmount, int diamondsAmmount)
         {
             _id = id;
             _name = name;
-            _inventoryRepresentation = (Sprite)Resources.Load("Media/Images/" + image, typeof(Sprite));
+            _inventoryRepresentation = (Sprite) AssetDatabase.LoadAssetAtPath("Assets/Fracsland/Resources/Media/Images/" + image, typeof(Sprite));
             _goldAmmount = goldAmmount;
             _diamondsAmmount = diamondsAmmount;
         }
