@@ -22,7 +22,7 @@ public class Bird : MonoBehaviour {
     }
 
     void Start () {
-		Debug.Log ("Birds Started");
+		//Debug.Log ("Birds Started");
         _birdNodes = GameObject.FindGameObjectsWithTag("BirdNode"); 
         _actualDestination = SelectRandomNode();
 	}
@@ -30,7 +30,7 @@ public class Bird : MonoBehaviour {
 	void Update ()
     {
         MoveToTarget();
-        UpdateSound();
+        //UpdateSound();
 	}
 
     void MoveToTarget()
