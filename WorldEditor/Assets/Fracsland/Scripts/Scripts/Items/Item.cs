@@ -44,14 +44,16 @@ namespace Items
         {
             _id = id;
             _name = name;
-            _inventoryRepresentation = (Sprite) AssetDatabase.LoadAssetAtPath("Assets/Fracsland/Resources/Media/Images/" + image, typeof(Sprite));
+            //_inventoryRepresentation = (Sprite) AssetDatabase.LoadAssetAtPath("Assets/Fracsland/Resources/Media/Images/" + image + ".png", typeof(Sprite));
+            _inventoryRepresentation = null;
           }
 
         public Item(int id, string name, bool isConsumible, string image, int goldAmmount, int diamondsAmmount)
         {
             _id = id;
             _name = name;
-            _inventoryRepresentation = (Sprite) AssetDatabase.LoadAssetAtPath("Assets/Fracsland/Resources/Media/Images/" + image, typeof(Sprite));
+            //_inventoryRepresentation = (Sprite) AssetDatabase.LoadAssetAtPath("Assets/Fracsland/Resources/Media/Images/" + image + ".png", typeof(Sprite));
+            _inventoryRepresentation = null;
             _goldAmmount = goldAmmount;
             _diamondsAmmount = diamondsAmmount;
         }
