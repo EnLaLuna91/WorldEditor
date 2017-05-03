@@ -36,6 +36,18 @@ public class ExtraButtons : MonoBehaviour {
 
      private void StartButton() {
           Debug.Log("Start");
+          if (GlobalVariables.TerrainIsLoad &&
+               GlobalVariables.ObjectivesIsSelected &&
+               GlobalVariables.ResourcesIsSelected &&
+               GlobalVariables.FxIsSelected) {
+               StartScene();
+          }
+     }
+
+     private void StartScene() {
+          Debug.Log("Load Scene");
+          GameObject camera = (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Fracsland/Prefabs/Camera.prefab", typeof(GameObject));
+
      }
 
      private void ExitButton() {

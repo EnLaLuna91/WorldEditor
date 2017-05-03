@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using Utils;
 using System.Collections.Generic;
-using UnityEditor;
 
 namespace Items
 {
@@ -44,7 +43,7 @@ namespace Items
         {
             _id = id;
             _name = name;
-            //_inventoryRepresentation = (Sprite) AssetDatabase.LoadAssetAtPath("Assets/Fracsland/Resources/Media/Images/" + image + ".png", typeof(Sprite));
+            //_inventoryRepresentation = (Sprite) AssetDatabase.LoadAssetAtPath("Assets/Fracsland/Resources/Media/Images/" + image + ".png", typeof(Sprite));              
             _inventoryRepresentation = null;
           }
 
@@ -52,7 +51,7 @@ namespace Items
         {
             _id = id;
             _name = name;
-            //_inventoryRepresentation = (Sprite) AssetDatabase.LoadAssetAtPath("Assets/Fracsland/Resources/Media/Images/" + image + ".png", typeof(Sprite));
+            //_inventoryRepresentation = (Sprite) AssetDatabase.LoadAssetAtPath("Assets/Fracsland/Resources/Media/Images/" + image + ".png", typeof(Sprite));              
             _inventoryRepresentation = null;
             _goldAmmount = goldAmmount;
             _diamondsAmmount = diamondsAmmount;
