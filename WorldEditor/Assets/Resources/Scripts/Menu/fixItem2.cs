@@ -17,10 +17,11 @@ public class fixItem2 : MonoBehaviour {
           btn.onClick.AddListener(TaskOnClick);
      }
 
-     private void TaskOnClick() {
+     private void TaskOnClick() {          
           if (ItemToFix != null) {    
                ReadyToFix = true;
           }
+          Debug.Log(string.Format("ReadyToFix: {0}", ReadyToFix));
      }
 
      private void Update() {
@@ -33,8 +34,10 @@ public class fixItem2 : MonoBehaviour {
 
 
      private void InsertItem() {
+          //Debug.Log(string.Format("Insert Obj: {0}\tLayer: {1}", obj.name, Layer));
 
           obj.layer = LayerMask.NameToLayer(Layer);
+          ChangeLayerRecursive(obj.transform, Layer);
 
           if (CustomTag != "") obj.tag = CustomTag;
 
@@ -70,21 +73,32 @@ public class fixItem2 : MonoBehaviour {
      private Vector3 RayCast() {
           RaycastHit hitInfo;
           Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+          //Debug.Log(string.Format("RayCast: {0}", Physics.Raycast(ray, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Terrain"))));
           if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Terrain")))
                return new Vector3(hitInfo.point.x, hitInfo.point.y + YItemPosition, hitInfo.point.z);
           else return new Vector3(0, 0, 0);
      }
 
-     private void ShowItem() {          
-          Vector3 pos = RayCast();
+     private void ShowItem() {
+          Vector3 pos = RayCast();          
           if (pos != new Vector3(0, 0, 0)) {
+               //Debug.Log(string.Format("ShowItem\tpos: {0}\tobj; {1}", pos, obj));
                if (obj == null) {
                     obj = Instantiate(ItemToFix, pos, Quaternion.Euler(RotationItem)) as GameObject;
                     Layer = LayerMask.LayerToName(obj.layer);
                     obj.layer = LayerMask.NameToLayer("Default");
+                    ChangeLayerRecursive(obj.transform, "Default");
+                    Debug.Log(string.Format("Create Obj: {0}\tLayer: {1}\tNew layer: {2}", obj.name, Layer, LayerMask.LayerToName(obj.layer)));
                }
                obj.transform.position = pos;
           }          
+     }
+
+     private void ChangeLayerRecursive(Transform trans, string name) {
+          foreach (Transform child in trans) {
+               child.gameObject.layer = LayerMask.NameToLayer(name);
+               ChangeLayerRecursive(child, name);
+          }
      }
 
 }

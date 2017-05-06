@@ -31,10 +31,10 @@ namespace Assets.Resources.Scripts.Quests
 
         public override void Setup()
         {
-            bridgeCamera = GameObject.Find("QuestCamera").GetComponent<Camera>();
-            bridgeCamera.enabled = false;
+               bridgeCamera = GameObject.Find("QuestCamera").GetComponent<Camera>();
+               bridgeCamera.enabled = false;
 
-            if (!_hasBeenConfigured)
+               if (!_hasBeenConfigured)
             {
                 _VisibleQuestGameObjects.SetActive(false);
             }

@@ -109,7 +109,7 @@ public class TerrainGrid : MonoBehaviour {
                     MeshFilter meshFilter = cell.GetComponent<MeshFilter>();
 
                     bool isCellValid = IsCellValid(x, z);
-
+                    
                     meshRenderer.material = isCellValid ? cellMaterialValid : cellMaterialInvalid;
 
                     if (!isCellValid) GlobalVariables.CanFixItem = false;
