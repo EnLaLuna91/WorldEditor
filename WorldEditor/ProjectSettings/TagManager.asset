@@ -13,6 +13,13 @@ TagManager:
   - Resources
   - Objectives
   - NPCs
+  - FarmParcel
+  - Quest
+  - portal
+  - BirdNode
+  - BridgeWood
+  - InventorySlot
+  - inGame
   layers:
   - Default
   - TransparentFX

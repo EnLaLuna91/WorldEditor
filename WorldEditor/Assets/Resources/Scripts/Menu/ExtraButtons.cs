@@ -1,17 +1,31 @@
 ﻿using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ExtraButtons : MonoBehaviour {
 
+     private GameController gameController;
      private Button btn;
 
      private void Start() {
+          InicializeGameController();
           btn = GetComponent<Button>();
           btn.onClick.AddListener(TaskOnClick);
      }
+
+     #region Game Controller
+
+     private void InicializeGameController() {
+          GameObject gameControllerObject = GameObject.FindWithTag("GameController");
+          if (gameControllerObject != null) {
+               gameController = gameControllerObject.GetComponent<GameController>();
+          }
+          if (gameController == null) {
+               Debug.Log("Cannot find 'GameController' script");
+          }
+     }
+
+     #endregion
 
      private void TaskOnClick() {
           if (gameObject.name == "SaveButton") SaveButton();
@@ -26,7 +40,7 @@ public class ExtraButtons : MonoBehaviour {
           Saver save = new Saver();
           save.StoreData(path);
      }
-     
+
      private void LoadButton() {
           Debug.Log("Load");
           string path = EditorUtility.OpenFilePanel("Open scene", "", "json");
@@ -35,6 +49,8 @@ public class ExtraButtons : MonoBehaviour {
 
      private void StartButton() {
           Debug.Log("Start");
+          gameController.DisableEditorMenus();
+          gameController.EnableInGameMenus();
      }
 
      private void ExitButton() {

@@ -10,14 +10,15 @@ public class GameController : MonoBehaviour {
      private GameObject mainMenu;
      private GameObject subMenu;
      private GameObject[] UIActivables;
+     private GameObject[] InGameMenus;
 
-     
+
      private Stack<GameObject> levels;
 
      private void Start() {
           InicialiceGlobalVarialbes();
           InicializeMenu();
-          
+
           levels = new Stack<GameObject>();
      }
 
@@ -53,12 +54,16 @@ public class GameController : MonoBehaviour {
           subMenu = GameObject.FindGameObjectWithTag("subMenu");
           UIActivables = GameObject.FindGameObjectsWithTag("UIActivable");
 
+          InGameMenus = GameObject.FindGameObjectsWithTag("inGame");
+
           basePanel.SetActive(true);
           panelRight.SetActive(false);
           panelHide.SetActive(false);
 
           mainMenu.SetActive(true);
-          subMenu.SetActive(false);          
+          subMenu.SetActive(false);
+
+          DisableInGameMenus();
      }
 
      public void MainMenuSetActive(bool isActive) {
@@ -94,12 +99,43 @@ public class GameController : MonoBehaviour {
           panelHide.SetActive(isActive);
      }
 
-     
+
+
+
+     #endregion
+
+     #region InGame Menus
+
+     public void DisableInGameMenus() {
+          foreach (var obj in InGameMenus) {
+               obj.SetActive(false);
+          }
+     }
+
+     public void DisableEditorMenus() {
+          basePanel.SetActive(false);
+          panelRight.SetActive(false);
+          panelHide.SetActive(false);
+     }
+
+     public void EnableInGameMenus() {
+          foreach (var obj in InGameMenus) {
+               obj.SetActive(true);
+          }
+     }
+
+     public void EnableEditorMenus() {
+          basePanel.SetActive(true);
+          panelRight.SetActive(true);
+          panelHide.SetActive(true);
+     }
+
+
      #endregion
 
 
      #region Menu Levels
-         
+
      public void PushGameObject(GameObject gameObject) {
           levels.Push(gameObject);
      }
