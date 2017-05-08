@@ -22,16 +22,15 @@ public class ExtraButtons : MonoBehaviour {
 
      private void SaveButton() {
           Debug.Log("Save");
-          var path = EditorUtility.SaveFilePanel("Save scene as unity", "", "scene.unity", "unity");
-          Debug.Log(string.Format("Ruta: {0}", path));
-          bool saveOK = EditorSceneManager.SaveScene(EditorSceneManager.GetActiveScene(), path);
-          Debug.Log("Saved Scene " + (saveOK ? "OK" : "Error!"));
+          string path = EditorUtility.SaveFilePanel("Save scene as json", "", "scene.json", "json");
+          Saver save = new Saver();
+          save.StoreData(path);
      }
-
+     
      private void LoadButton() {
           Debug.Log("Load");
-          string path = EditorUtility.OpenFilePanel("Open scene", "", "unity");
-          SceneManager.LoadScene(path, LoadSceneMode.Additive);
+          string path = EditorUtility.OpenFilePanel("Open scene", "", "json");
+          //SceneManager.LoadScene(path, LoadSceneMode.Additive);
      }
 
      private void StartButton() {

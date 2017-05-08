@@ -25,7 +25,7 @@ public class loadTerrain : MonoBehaviour {
      private void RemoveTerrain() {
           GameObject[] maps = GameObject.FindGameObjectsWithTag("Terrain");
           foreach(GameObject map in maps) {
-               Debug.Log(string.Format("Terrain name: {0}", map.name));
+               //Debug.Log(string.Format("Terrain name: {0}", map.name));
                Destroy(map);               
           }              
           GlobalVariables.TerrainIsLoad = false;

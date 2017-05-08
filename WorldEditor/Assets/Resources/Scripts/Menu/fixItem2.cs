@@ -34,7 +34,7 @@ public class fixItem2 : MonoBehaviour {
 
 
      private void InsertItem() {
-          //Debug.Log(string.Format("Insert Obj: {0}\tLayer: {1}", obj.name, Layer));
+          Debug.Log(string.Format("Insert Obj: {0}\tLayer: {1}", obj.name, Layer));
 
           obj.layer = LayerMask.NameToLayer(Layer);
           ChangeLayerRecursive(obj.transform, Layer);
@@ -50,6 +50,7 @@ public class fixItem2 : MonoBehaviour {
 
           if (GlobalVariables.IsCtrlPressed) ReadyToFix = true;
           else {
+               Debug.Log(string.Format("No continue insert"));
                ReadyToFix = false;
                RotationItem.y = 0;
                obj = null;
