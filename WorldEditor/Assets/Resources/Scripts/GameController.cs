@@ -17,7 +17,9 @@ public class GameController : MonoBehaviour {
 
      private void Start() {
           InicialiceGlobalVarialbes();
-          InicializeMenu();
+          InicializePanels();
+          InicializeMenus();
+          DisableInGameMenus();
 
           levels = new Stack<GameObject>();
      }
@@ -45,7 +47,7 @@ public class GameController : MonoBehaviour {
 
      #region Menus Behavior
 
-     private void InicializeMenu() {
+     private void InicializePanels() {
           basePanel = GameObject.Find("BasePanel");
           panelRight = GameObject.Find("PanelRight");
           panelHide = GameObject.Find("PanelHide");
@@ -54,16 +56,16 @@ public class GameController : MonoBehaviour {
           subMenu = GameObject.FindGameObjectWithTag("subMenu");
           UIActivables = GameObject.FindGameObjectsWithTag("UIActivable");
 
-          InGameMenus = GameObject.FindGameObjectsWithTag("inGame");
+          InGameMenus = GameObject.FindGameObjectsWithTag("inGame");                  
+     }
 
+     public void InicializeMenus() {
           basePanel.SetActive(true);
           panelRight.SetActive(false);
           panelHide.SetActive(false);
 
           mainMenu.SetActive(true);
           subMenu.SetActive(false);
-
-          DisableInGameMenus();
      }
 
      public void MainMenuSetActive(bool isActive) {
