@@ -55,29 +55,29 @@ public class Interactable : MonoBehaviour
 
     void OnMouseOver()
     {
-        _mouseOver = true;
-        GUIController.instance.showInspectedItem(name, gameObject);
-        GUIController.instance.SetCursor(cursorType);
-        if(!GUIController.instance.onGUIOpened && Vector3.Distance(this.transform.position, LevelController.instance.Hero.gameObject.transform.position) < InteractionDistance)
-        {
-            GUIController.instance.showInspectedItem(this.name, gameObject);
-            LevelController.instance.Hero.interactingItem = this;
-            _frameCounter = 0;
-        }
+        //_mouseOver = true;
+        //GUIController.instance.showInspectedItem(name, gameObject);
+        //GUIController.instance.SetCursor(cursorType);
+        //if(!GUIController.instance.onGUIOpened && Vector3.Distance(this.transform.position, LevelController.instance.Hero.gameObject.transform.position) < InteractionDistance)
+        //{
+        //    GUIController.instance.showInspectedItem(this.name, gameObject);
+        //    LevelController.instance.Hero.interactingItem = this;
+        //    _frameCounter = 0;
+        //}
 
-        if(selectedGameEvent == QuestManager.GameEventType.SOLVE_EVENT || selectedGameEvent == QuestManager.GameEventType.FARM_EVENT)
-        {
-            GUIController.instance.showInspectedItem(this.name, gameObject);
-            LevelController.instance.Hero.interactingItem = this;
-        }
+        //if(selectedGameEvent == QuestManager.GameEventType.SOLVE_EVENT || selectedGameEvent == QuestManager.GameEventType.FARM_EVENT)
+        //{
+        //    GUIController.instance.showInspectedItem(this.name, gameObject);
+        //    LevelController.instance.Hero.interactingItem = this;
+        //}
     }
 
     void OnMouseExit()
     {
-        _mouseOver = false;
-        GUIController.instance.SetCursor(GUIController.CURSOR_TYPE.CURSOR_DEFAULT);
-        GUIController.instance.hideInspector();
-        LevelController.instance.Hero.interactingItem = null;
+        //_mouseOver = false;
+        //GUIController.instance.SetCursor(GUIController.CURSOR_TYPE.CURSOR_DEFAULT);
+        //GUIController.instance.hideInspector();
+        //LevelController.instance.Hero.interactingItem = null;
     }
 
     void OnMouseDown()

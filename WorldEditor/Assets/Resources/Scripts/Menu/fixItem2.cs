@@ -21,7 +21,7 @@ public class fixItem2 : MonoBehaviour {
           if (ItemToFix != null) {    
                ReadyToFix = true;
           }
-          Debug.Log(string.Format("ReadyToFix: {0}", ReadyToFix));
+          //Debug.Log(string.Format("ReadyToFix: {0}", ReadyToFix));
      }
 
      private void Update() {
@@ -74,14 +74,15 @@ public class fixItem2 : MonoBehaviour {
      private Vector3 RayCast() {
           RaycastHit hitInfo;
           Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-          //Debug.Log(string.Format("RayCast: {0}", Physics.Raycast(ray, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Terrain"))));
+          Debug.Log(string.Format("RayCast: {0}\tpos: {1}", Physics.Raycast(ray, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Terrain")), hitInfo.point));
           if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Terrain")))
                return new Vector3(hitInfo.point.x, hitInfo.point.y + YItemPosition, hitInfo.point.z);
           else return new Vector3(0, 0, 0);
      }
 
      private void ShowItem() {
-          Vector3 pos = RayCast();          
+          Vector3 pos = RayCast();
+          //Debug.Log(string.Format("ShowItem\tpos: {0}\tobj; {1}", pos, obj));
           if (pos != new Vector3(0, 0, 0)) {
                //Debug.Log(string.Format("ShowItem\tpos: {0}\tobj; {1}", pos, obj));
                if (obj == null) {
