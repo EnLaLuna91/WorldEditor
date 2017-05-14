@@ -6,6 +6,7 @@ public class ExtraButtons : MonoBehaviour {
 
      private GameController gameController;
      private Button btn;
+     private LoadHero hero;
 
      private void Start() {
           InicializeGameController();
@@ -51,6 +52,9 @@ public class ExtraButtons : MonoBehaviour {
           Debug.Log("Start");
           gameController.DisableEditorMenus();
           gameController.EnableInGameMenus();
+
+          //LoadHero hero = gameObject.GetComponent<LoadHero>();
+          hero.SetHero();
      }
 
      private void ExitButton() {

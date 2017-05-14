@@ -29,6 +29,8 @@ public class ExitGameMode : MonoBehaviour {
      private void TaskOnClick() {
           gameController.DisableInGameMenus();
           gameController.InicializeMenus();
+          GameObject hero = GameObject.Find("Hero(Clone)");
+          Destroy(hero);
      }
 
 }
