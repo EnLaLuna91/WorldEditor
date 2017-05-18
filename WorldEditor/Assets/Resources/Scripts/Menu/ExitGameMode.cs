@@ -29,8 +29,15 @@ public class ExitGameMode : MonoBehaviour {
      private void TaskOnClick() {
           gameController.DisableInGameMenus();
           gameController.InicializeMenus();
+          ChangeCameras();
           GameObject hero = GameObject.Find("Hero(Clone)");
           Destroy(hero);
+          
+     }
+
+     private void ChangeCameras() {
+          GlobalVariables.EditorCamera.enabled = !GlobalVariables.EditorCamera.enabled;
+          GlobalVariables.HeroCamera.enabled = !GlobalVariables.HeroCamera.enabled;
      }
 
 }

@@ -54,7 +54,7 @@ public class Hero : HumanNPC {
 	}
 
 	public void updateInput(){
-        if (GUIController.instance.onGUIOpened) return;
+        //if (GUIController.instance.onGUIOpened) return;
 		//if touching the screen (finger or mouse)
 		if (((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) || (Input.GetMouseButton(0))) && !GUIController.instance.onGUIOpened)
 		{
@@ -235,7 +235,7 @@ public class Hero : HumanNPC {
     public override void Setup()
     {
         eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
-        MainCameraController.instance.AttachCameraToGameObject(this.gameObject);
+        //MainCameraController.instance.AttachCameraToGameObject(this.gameObject);
         movementManager.SetNewDestination(_target.transform.position);
         movementManager.speed = 2f; 
         _lastUpdateLogic = defaultUpdate;

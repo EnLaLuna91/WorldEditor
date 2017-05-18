@@ -6,7 +6,7 @@ public class ExtraButtons : MonoBehaviour {
 
      private GameController gameController;
      private Button btn;
-     private LoadHero hero;
+     private LoadHero hero = new LoadHero();
 
      private void Start() {
           InicializeGameController();

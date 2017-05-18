@@ -61,7 +61,7 @@ public class MovementManager : MonoBehaviour {
 		} else {
 			_agent.enabled = true;
 			_actualUpdate = null;
-			_agent.SetDestination (destination);
+			//_agent.SetDestination (destination);
 		}
 	}
 

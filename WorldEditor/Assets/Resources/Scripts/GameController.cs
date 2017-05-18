@@ -12,6 +12,9 @@ public class GameController : MonoBehaviour {
      private GameObject[] UIActivables;
      private GameObject[] InGameMenus;
 
+     private Camera MainCamera;
+     private Camera HeroCamera;
+
 
      private Stack<GameObject> levels;
 
@@ -42,6 +45,9 @@ public class GameController : MonoBehaviour {
 
           GlobalVariables.YouWin = false;
           GlobalVariables.GameOver = false;
+
+          GlobalVariables.EditorCamera = Camera.main;
+          GlobalVariables.HeroCamera = null;
      }
 
 
@@ -151,7 +157,7 @@ public class GameController : MonoBehaviour {
      }
 
      #endregion
-
+     
      void OnGUI() {
           Event e = Event.current;
           if (e.shift) GlobalVariables.IsShiftPressed = true;

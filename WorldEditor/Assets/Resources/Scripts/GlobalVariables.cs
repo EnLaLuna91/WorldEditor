@@ -19,4 +19,7 @@ public static class GlobalVariables {
 
      public static bool YouWin { get; set; }
      public static bool GameOver { get; set; }
+
+     public static Camera EditorCamera { get; set; }
+     public static Camera HeroCamera { get; set; }
 }
