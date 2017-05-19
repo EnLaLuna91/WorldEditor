@@ -22,4 +22,6 @@ public static class GlobalVariables {
 
      public static Camera EditorCamera { get; set; }
      public static Camera HeroCamera { get; set; }
+
+     public static bool inGameMode { get; set; }
 }

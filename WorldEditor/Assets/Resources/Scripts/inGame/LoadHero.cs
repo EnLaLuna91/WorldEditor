@@ -39,18 +39,18 @@ public class LoadHero : MonoBehaviour {
      private void LoadCamera() {
           //GlobalVariables.EditorCamera = Camera.main;
           if (GlobalVariables.HeroCamera == null) {
-               GlobalVariables.HeroCamera = Camera.Instantiate((Camera) AssetDatabase.LoadAssetAtPath("Assets/Resources/Prefabs/Camera/Camera.prefab", typeof(Camera)));
-               //GlobalVariables.HeroCamera = (Camera) AssetDatabase.LoadAssetAtPath("Assets/Fracsland/Prefabs/Camera.prefab", typeof(Camera));
-               //GameObject cameraPrefab = (Camera) AssetDatabase.LoadAssetAtPath("Assets/Fracsland/Prefabs/Camera.prefab", typeof(Camera);
-               //HeroCamera = (Camera) Instantiate(cameraPrefab, levelStartPoint.transform.position, levelStartPoint.transform.rotation);
+               Camera cam = (Camera) AssetDatabase.LoadAssetAtPath("Assets/Resources/Prefabs/Camera/Camera.prefab", typeof(Camera));
+               GlobalVariables.HeroCamera = Camera.Instantiate(cam, levelStartPoint.transform.position, levelStartPoint.transform.rotation);
                GlobalVariables.HeroCamera.enabled = false;
-               Debug.Log(string.Format("LoadCamera\nEditorCamera: {0}\tHeroCamera: {1}", GlobalVariables.EditorCamera, GlobalVariables.HeroCamera));
+               Debug.Log(string.Format("LoadCamera\nHeroCamera.Pos: {0}\tHeroCamera.Rot: {1}", GlobalVariables.HeroCamera.transform.position, GlobalVariables.HeroCamera.transform.rotation));
           }          
      }
 
      private void ChangeCameras() {
-          GlobalVariables.EditorCamera.enabled = !GlobalVariables.EditorCamera.enabled;
+          GlobalVariables.EditorCamera.enabled = !GlobalVariables.EditorCamera.enabled;          
+          GlobalVariables.HeroCamera.transform.position = new Vector3(levelStartPoint.transform.position.x, levelStartPoint.transform.position.y + 10, levelStartPoint.transform.position.z + 10);
+          GlobalVariables.HeroCamera.transform.rotation = levelStartPoint.transform.rotation;
           GlobalVariables.HeroCamera.enabled = !GlobalVariables.HeroCamera.enabled;
-          Debug.Log(string.Format("ChangeCamera\nEditorCamera: {0}\tHeroCamera: {1}", GlobalVariables.EditorCamera.enabled, GlobalVariables.HeroCamera.enabled));
+          Debug.Log(string.Format("ChangeCameras\nHeroCamera.Pos: {0}\tHeroCamera.Rot: {1}", GlobalVariables.HeroCamera.transform.position, GlobalVariables.HeroCamera.transform.rotation));
      }
 }

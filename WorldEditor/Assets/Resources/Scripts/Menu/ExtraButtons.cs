@@ -52,8 +52,7 @@ public class ExtraButtons : MonoBehaviour {
           Debug.Log("Start");
           gameController.DisableEditorMenus();
           gameController.EnableInGameMenus();
-
-          //LoadHero hero = gameObject.GetComponent<LoadHero>();
+          GlobalVariables.inGameMode = true;
           hero.SetHero();
      }
 

@@ -32,6 +32,7 @@ public class ExitGameMode : MonoBehaviour {
           ChangeCameras();
           GameObject hero = GameObject.Find("Hero(Clone)");
           Destroy(hero);
+          GlobalVariables.inGameMode = false;
           
      }
 

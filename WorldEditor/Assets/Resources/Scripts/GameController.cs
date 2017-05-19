@@ -48,6 +48,8 @@ public class GameController : MonoBehaviour {
 
           GlobalVariables.EditorCamera = Camera.main;
           GlobalVariables.HeroCamera = null;
+
+          GlobalVariables.inGameMode = false;
      }
 
 

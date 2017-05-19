@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 
 public class TerrainGrid : MonoBehaviour {
      public float cellSize = 1;
@@ -23,12 +24,14 @@ public class TerrainGrid : MonoBehaviour {
      }
 
      void Update() {
-          UpdateSize();
-          UpdatePosition();
-          UpdateHeights();
-          UpdateCells();
+          if (!GlobalVariables.inGameMode) {
+               UpdateSize();
+               UpdatePosition();
+               UpdateHeights();
+               UpdateCells();
+          } 
      }
-
+    
      GameObject CreateChild() {
           GameObject go = new GameObject();
 

@@ -54,9 +54,9 @@ public class Hero : HumanNPC {
 	}
 
 	public void updateInput(){
-        //if (GUIController.instance.onGUIOpened) return;
-		//if touching the screen (finger or mouse)
-		if (((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) || (Input.GetMouseButton(0))) && !GUIController.instance.onGUIOpened)
+          if (GUIController.instance.onGUIOpened) return;
+          //if touching the screen (finger or mouse)
+          if (((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) || (Input.GetMouseButton(0))) && !GUIController.instance.onGUIOpened)
 		{
 			//If not touching the GUI
 			if (!eventSystem.IsPointerOverGameObject()){
