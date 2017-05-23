@@ -4,6 +4,9 @@ using UnityEngine;
 
 [Serializable]
 public class SaverData {
+     public string SceneName;
+     public string QuestDesc;
+
      public GameObject Terrain;
      public List<ObjectivesData> Objectives;
      public List<ResourcesData> Resources;

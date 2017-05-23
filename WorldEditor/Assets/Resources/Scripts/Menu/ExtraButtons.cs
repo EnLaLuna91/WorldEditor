@@ -38,7 +38,7 @@ public class ExtraButtons : MonoBehaviour {
 
      private void SaveButton() {
           Debug.Log("Save");
-          string path = EditorUtility.SaveFilePanel("Save scene as json", "", "scene.json", "json");
+          string path = EditorUtility.SaveFilePanel("Save scene as json", "", GlobalVariables.SceneName.ToLower() + ".json", "json");
           Saver save = new Saver();
           save.StoreData(path);
      }

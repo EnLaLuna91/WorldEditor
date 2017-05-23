@@ -12,6 +12,9 @@ public class Saver : MonoBehaviour {
      public void StoreData(string path) {
           //Debug.Log(string.Format("Path: {0}", path));
 
+          data.SceneName = GlobalVariables.SceneName;
+          data.QuestDesc = GlobalVariables.QuestDesc;
+
           data.Terrain = GameObject.FindGameObjectWithTag("Terrain");
           data.Sky = RenderSettings.skybox;
           GetObjectives();
