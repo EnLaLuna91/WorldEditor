@@ -7,6 +7,7 @@ public class ExtraButtons : MonoBehaviour {
      private GameController gameController;
      private Button btn;
      private LoadHero hero = new LoadHero();
+     private SceneNameQuestDesc NameInGame = new SceneNameQuestDesc();
 
      private void Start() {
           InicializeGameController();
@@ -52,6 +53,7 @@ public class ExtraButtons : MonoBehaviour {
           Debug.Log("Start");
           gameController.DisableEditorMenus();
           gameController.EnableInGameMenus();
+          NameInGame.UpdateText();
           GlobalVariables.inGameMode = true;
           hero.SetHero();
      }

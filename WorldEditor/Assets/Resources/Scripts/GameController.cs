@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
@@ -11,6 +12,8 @@ public class GameController : MonoBehaviour {
      private GameObject subMenu;
      private GameObject[] UIActivables;
      private GameObject[] InGameMenus;
+     private GameObject NameField;
+     private GameObject SceneName;
 
      private Camera MainCamera;
      private Camera HeroCamera;
@@ -19,15 +22,18 @@ public class GameController : MonoBehaviour {
      private Stack<GameObject> levels;
 
      private void Start() {
-          InicialiceGlobalVarialbes();
+          InicialiceGlobalVariables();
           InicializePanels();
           InicializeMenus();
           DisableInGameMenus();
+          SetSceneName();
 
           levels = new Stack<GameObject>();
      }
 
-     private void InicialiceGlobalVarialbes() {
+     #region Inicialice Global Variables
+
+     private void InicialiceGlobalVariables() {
           GlobalVariables.CanFixItem = true;
 
           GlobalVariables.TerrainIsLoad = false;
@@ -50,8 +56,12 @@ public class GameController : MonoBehaviour {
           GlobalVariables.HeroCamera = null;
 
           GlobalVariables.inGameMode = false;
-     }
 
+          GlobalVariables.SceneName = "Unknow name";
+          GlobalVariables.QuestDesc = "";
+     } 
+
+     #endregion
 
      #region Menus Behavior
 
@@ -64,7 +74,10 @@ public class GameController : MonoBehaviour {
           subMenu = GameObject.FindGameObjectWithTag("subMenu");
           UIActivables = GameObject.FindGameObjectsWithTag("UIActivable");
 
-          InGameMenus = GameObject.FindGameObjectsWithTag("inGame");                  
+          InGameMenus = GameObject.FindGameObjectsWithTag("inGame");
+
+          NameField = GameObject.Find("SceneInputName");
+          SceneName = GameObject.Find("NameScene");
      }
 
      public void InicializeMenus() {
@@ -74,6 +87,9 @@ public class GameController : MonoBehaviour {
 
           mainMenu.SetActive(true);
           subMenu.SetActive(false);
+
+          EnableFieldName(false);
+          SceneName.SetActive(true);
      }
 
      public void MainMenuSetActive(bool isActive) {
@@ -108,9 +124,7 @@ public class GameController : MonoBehaviour {
      public void PanelHideSetActive(bool isActive) {
           panelHide.SetActive(isActive);
      }
-
-
-
+     
 
      #endregion
 
@@ -126,6 +140,7 @@ public class GameController : MonoBehaviour {
           basePanel.SetActive(false);
           panelRight.SetActive(false);
           panelHide.SetActive(false);
+          SceneName.SetActive(false);
      }
 
      public void EnableInGameMenus() {
@@ -138,12 +153,12 @@ public class GameController : MonoBehaviour {
           basePanel.SetActive(true);
           panelRight.SetActive(true);
           panelHide.SetActive(true);
+          SceneName.SetActive(true);
      }
 
 
      #endregion
-
-
+     
      #region Menu Levels
 
      public void PushGameObject(GameObject gameObject) {
@@ -159,7 +174,20 @@ public class GameController : MonoBehaviour {
      }
 
      #endregion
-     
+
+     #region Input Fields Name
+
+     public void EnableFieldName(bool active) {
+          NameField.SetActive(active);
+     }
+
+     public void SetSceneName() {
+          Text txt = SceneName.GetComponentInChildren<Text>();
+          txt.text = GlobalVariables.SceneName;
+     }
+
+     #endregion
+
      void OnGUI() {
           Event e = Event.current;
           if (e.shift) GlobalVariables.IsShiftPressed = true;

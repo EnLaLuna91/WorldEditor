@@ -24,4 +24,7 @@ public static class GlobalVariables {
      public static Camera HeroCamera { get; set; }
 
      public static bool inGameMode { get; set; }
+
+     public static string SceneName { get; set; }
+     public static string QuestDesc { get; set; }
 }
