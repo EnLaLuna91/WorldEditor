@@ -1,9 +1,9 @@
-﻿using System;
-using SerializerFree;
+﻿using SerializerFree;
 using SerializerFree.Serializers;
-using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
+using UnityEditor;
+using UnityEngine;
 
 public class Saver : MonoBehaviour {
 
@@ -14,22 +14,26 @@ public class Saver : MonoBehaviour {
 
           data.SceneName = GlobalVariables.SceneName;
           data.QuestDesc = GlobalVariables.QuestDesc;
-
-          data.Terrain = GameObject.FindGameObjectWithTag("Terrain");
-          data.Sky = RenderSettings.skybox;
+          
+          data.Terrain = GameObject.FindGameObjectWithTag("Terrain").name.Split('(')[0];
+          data.Sky = GlobalVariables.SkyName;
           GetObjectives();
           GetResources();
           GetEffects();
           GetItems();
           GetNPCs();
 
-          string output = Serializer.Serialize(data, new UnityJsonSerializer());
+          string output = Serialize();
 
           //Debug.Log(string.Format("Serializer: \n{0}", output));
 
           WriteJSON(path, output);
 
      }     
+
+     private string Serialize() {
+          return Serializer.Serialize(data, new UnityJsonSerializer());
+     }
 
      private void WriteJSON(string path, string output) {
           using (FileStream fs = new FileStream(path, FileMode.Create)) {
@@ -44,7 +48,8 @@ public class Saver : MonoBehaviour {
           GameObject[] objectives = GameObject.FindGameObjectsWithTag("Objectives");
           foreach (GameObject item in objectives) {
                ObjectivesData obj = new ObjectivesData {
-                    Objective = item,
+                    Objective = item.name.Split('(')[0],
+                    Tag = item.tag,
                     Position = item.transform.position,
                     Rotation = item.transform.rotation
                };
@@ -58,7 +63,8 @@ public class Saver : MonoBehaviour {
           GameObject[] resources = GameObject.FindGameObjectsWithTag("Resources");
           foreach (GameObject item in resources) {
                ResourcesData obj = new ResourcesData {
-                    Resouce = item,
+                    Resource = item.name.Split('(')[0],
+                    Tag = item.tag,
                     Position = item.transform.position,
                     Rotation = item.transform.rotation
                };
@@ -72,7 +78,7 @@ public class Saver : MonoBehaviour {
           GameObject[] effects = GameObject.FindGameObjectsWithTag("FX");
           foreach (GameObject item in effects) {
                EffectsData obj = new EffectsData {
-                    Effect = item,
+                    Effect = item.name.Split('(')[0],
                     Position = item.transform.position,
                     Rotation = item.transform.rotation
                };
@@ -86,7 +92,8 @@ public class Saver : MonoBehaviour {
           GameObject[] items = GameObject.FindGameObjectsWithTag("Item");
           foreach (GameObject item in items) {
                ItemsData obj = new ItemsData {
-                    Item = item,
+                    Item = item.name.Split('(')[0],
+                    Tag = item.tag,
                     Position = item.transform.position,
                     Rotation = item.transform.rotation
                };
@@ -100,7 +107,8 @@ public class Saver : MonoBehaviour {
           GameObject[] npcs = GameObject.FindGameObjectsWithTag("NPCs");
           foreach (GameObject item in npcs) {
                NPCsData obj = new NPCsData {
-                    NPC = item,
+                    NPC = item.name.Split('(')[0],
+                    Tag = item.tag,
                     Position = item.transform.position,
                     Rotation = item.transform.rotation
                };

@@ -46,7 +46,11 @@ public class ExtraButtons : MonoBehaviour {
      private void LoadButton() {
           Debug.Log("Load");
           string path = EditorUtility.OpenFilePanel("Open scene", "", "json");
-          //SceneManager.LoadScene(path, LoadSceneMode.Additive);
+          //Debug.Log(string.Format("Path.Length: {0}\tPath: {1}", path.Length, path));
+          if (path.Length != 0) {
+               Loader load = new Loader(gameController);
+               load.LoadData(path);
+          }          
      }
 
      private void StartButton() {

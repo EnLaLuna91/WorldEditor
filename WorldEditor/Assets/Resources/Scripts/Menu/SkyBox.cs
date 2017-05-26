@@ -14,5 +14,6 @@ public class SkyBox : MonoBehaviour {
      private void TaskOnClick() {
           RenderSettings.skybox = Skybox;
           GlobalVariables.SkyIsSelected = true;
+          GlobalVariables.SkyName = Skybox.name;
      }
 }

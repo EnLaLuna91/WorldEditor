@@ -27,4 +27,6 @@ public static class GlobalVariables {
 
      public static string SceneName { get; set; }
      public static string QuestDesc { get; set; }
+
+     public static string SkyName { get; set; }
 }

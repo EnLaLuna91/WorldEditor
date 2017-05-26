@@ -57,8 +57,10 @@ public class GameController : MonoBehaviour {
 
           GlobalVariables.inGameMode = false;
 
-          GlobalVariables.SceneName = "Unknow name";
-          GlobalVariables.QuestDesc = "";
+          GlobalVariables.SceneName = "Scene 0";
+          GlobalVariables.QuestDesc = "Quest Objectives ...";
+
+          GlobalVariables.SkyName = "";
      } 
 
      #endregion

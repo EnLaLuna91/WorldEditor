@@ -8,6 +8,7 @@ public class InputFields : MonoBehaviour {
      private InputField Desc;
      private Button btn;
      private GameController gameController;
+     private bool FirstTimeEnter = true;
 
      private void Start() {
           InicializeGameController();
@@ -49,6 +50,14 @@ public class InputFields : MonoBehaviour {
           GlobalVariables.QuestDesc = Desc.text;
           gameController.SetSceneName();          
           gameController.EnableFieldName(false);
+     }
+
+     private void Update() {
+          if (FirstTimeEnter) {
+               FirstTimeEnter = false;
+               Name.text = GlobalVariables.SceneName;
+               Desc.text = GlobalVariables.QuestDesc;
+          }
      }
 
 }
