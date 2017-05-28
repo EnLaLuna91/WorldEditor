@@ -74,7 +74,7 @@ public class fixItem2 : MonoBehaviour {
      private Vector3 RayCast() {
           RaycastHit hitInfo;
           Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-          Debug.Log(string.Format("RayCast: {0}\tpos: {1}", Physics.Raycast(ray, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Terrain")), hitInfo.point));
+          //Debug.Log(string.Format("RayCast: {0}\tpos: {1}", Physics.Raycast(ray, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Terrain")), hitInfo.point));
           if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Terrain")))
                return new Vector3(hitInfo.point.x, hitInfo.point.y + YItemPosition, hitInfo.point.z);
           else return new Vector3(0, 0, 0);
@@ -84,22 +84,24 @@ public class fixItem2 : MonoBehaviour {
           Vector3 pos = RayCast();
           //Debug.Log(string.Format("ShowItem\tpos: {0}\tobj; {1}", pos, obj));
           if (pos != new Vector3(0, 0, 0)) {
-               //Debug.Log(string.Format("ShowItem\tpos: {0}\tobj; {1}", pos, obj));
-               if (obj == null) {
+               if (obj == null) {                   
                     obj = Instantiate(ItemToFix, pos, Quaternion.Euler(RotationItem)) as GameObject;
                     Layer = LayerMask.LayerToName(obj.layer);
                     obj.layer = LayerMask.NameToLayer("Default");
                     ChangeLayerRecursive(obj.transform, "Default");
-                    Debug.Log(string.Format("Create Obj: {0}\tLayer: {1}\tNew layer: {2}", obj.name, Layer, LayerMask.LayerToName(obj.layer)));
+                    //Debug.Log(string.Format("Create Obj: {0}\tLayer: {1}\tNew layer: {2}", obj.name, Layer, LayerMask.LayerToName(obj.layer)));
                }
+               Debug.Log(string.Format("Pos: {0}\tYpos: {1}", pos, YItemPosition));
                obj.transform.position = pos;
           }          
      }
 
      private void ChangeLayerRecursive(Transform trans, string name) {
           foreach (Transform child in trans) {
-               child.gameObject.layer = LayerMask.NameToLayer(name);
-               ChangeLayerRecursive(child, name);
+               if (child.gameObject.layer != LayerMask.NameToLayer("Water")) {
+                    child.gameObject.layer = LayerMask.NameToLayer(name);
+                    ChangeLayerRecursive(child, name);
+               }               
           }
      }
 

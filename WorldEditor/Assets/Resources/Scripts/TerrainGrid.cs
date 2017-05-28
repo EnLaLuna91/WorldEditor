@@ -1,5 +1,4 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TerrainGrid : MonoBehaviour {
      public float cellSize = 1;

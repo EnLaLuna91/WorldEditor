@@ -15,7 +15,7 @@ public class Saver : MonoBehaviour {
           data.SceneName = GlobalVariables.SceneName;
           data.QuestDesc = GlobalVariables.QuestDesc;
           
-          data.Terrain = GameObject.FindGameObjectWithTag("Terrain").name.Split('(')[0];
+          data.Terrain = Terrain.activeTerrain.name.Split('(')[0];
           data.Sky = GlobalVariables.SkyName;
           GetObjectives();
           GetResources();
