@@ -10,6 +10,7 @@ public class TerrainGrid : MonoBehaviour {
 
      private GameObject[] _cells;
      private float[] _heights;
+     private int baseGridWidth, baseGridHeight;
 
      void Start() {
           _cells = new GameObject[gridHeight * gridWidth];
@@ -20,10 +21,18 @@ public class TerrainGrid : MonoBehaviour {
                     _cells[z * gridWidth + x] = CreateChild();
                }
           }
+          baseGridWidth = gridWidth;
+          baseGridHeight = gridHeight;
      }
 
      void Update() {
-          if (!GlobalVariables.inGameMode) {
+          if (GlobalVariables.GridWidth != 0) gridWidth = GlobalVariables.GridWidth;
+          else gridWidth = baseGridWidth;
+
+          if (GlobalVariables.GridHeight != 0) gridHeight = GlobalVariables.GridHeight;
+          else gridHeight = baseGridHeight;
+
+          if (!GlobalVariables.inGameMode && GlobalVariables.TerrainIsLoad) {
                UpdateSize();
                UpdatePosition();
                UpdateHeights();

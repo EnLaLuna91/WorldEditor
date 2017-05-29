@@ -61,6 +61,9 @@ public class GameController : MonoBehaviour {
           GlobalVariables.QuestDesc = "Quest Objectives ...";
 
           GlobalVariables.SkyName = "";
+
+          GlobalVariables.GridWidth = 0;
+          GlobalVariables.GridHeight = 0;
      } 
 
      #endregion

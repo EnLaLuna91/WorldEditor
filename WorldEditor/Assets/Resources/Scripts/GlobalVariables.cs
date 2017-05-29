@@ -29,4 +29,7 @@ public static class GlobalVariables {
      public static string QuestDesc { get; set; }
 
      public static string SkyName { get; set; }
+
+     public static int GridWidth { get; set; }
+     public static int GridHeight { get; set; }
 }

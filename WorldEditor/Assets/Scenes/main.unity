@@ -882,6 +882,8 @@ MonoBehaviour:
   CustomTag: Resources
   RotationItem: {x: 0, y: 0, z: 0}
   YItemPosition: 4
+  gridWidth: 5
+  gridHeight: 5
 --- !u!1 &172208616 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1481192694076544, guid: 35a9c1dad5690a2418321e03580c1117,
@@ -1233,6 +1235,8 @@ MonoBehaviour:
   CustomTag: NPCs
   RotationItem: {x: 0, y: 0, z: 0}
   YItemPosition: 0
+  gridWidth: 0
+  gridHeight: 0
 --- !u!1 &211374037 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1865396338744992, guid: d11a385d099e55a429489fed8d412f8b,
@@ -3771,6 +3775,8 @@ MonoBehaviour:
   CustomTag: Item
   RotationItem: {x: 0, y: 0, z: 0}
   YItemPosition: 0
+  gridWidth: 2
+  gridHeight: 2
 --- !u!1 &490151222
 GameObject:
   m_ObjectHideFlags: 0
@@ -4120,6 +4126,8 @@ MonoBehaviour:
   CustomTag: Resources
   RotationItem: {x: 0, y: 0, z: 0}
   YItemPosition: 0
+  gridWidth: 0
+  gridHeight: 0
 --- !u!1001 &507541242
 Prefab:
   m_ObjectHideFlags: 0
@@ -4396,6 +4404,8 @@ MonoBehaviour:
   CustomTag: Resources
   RotationItem: {x: 0, y: 0, z: 0}
   YItemPosition: 0
+  gridWidth: 2
+  gridHeight: 2
 --- !u!1 &527054039
 GameObject:
   m_ObjectHideFlags: 0
@@ -6794,6 +6804,8 @@ MonoBehaviour:
   CustomTag: 
   RotationItem: {x: -90, y: 0, z: 0}
   YItemPosition: 1
+  gridWidth: 0
+  gridHeight: 0
 --- !u!224 &716498312 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224598970555657276, guid: 271fd70f3b73450428aa0a38d9c136be,
@@ -8566,6 +8578,8 @@ MonoBehaviour:
   CustomTag: NPCs
   RotationItem: {x: 0, y: 0, z: 0}
   YItemPosition: 0
+  gridWidth: 0
+  gridHeight: 0
 --- !u!1001 &917473574
 Prefab:
   m_ObjectHideFlags: 0
@@ -9052,6 +9066,8 @@ MonoBehaviour:
   CustomTag: Resources
   RotationItem: {x: 0, y: 0, z: 0}
   YItemPosition: 0
+  gridWidth: 5
+  gridHeight: 5
 --- !u!1 &952703134 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1865396338744992, guid: d11a385d099e55a429489fed8d412f8b,
@@ -9246,6 +9262,8 @@ MonoBehaviour:
   CustomTag: Item
   RotationItem: {x: 0, y: 0, z: 0}
   YItemPosition: 0.2
+  gridWidth: 0
+  gridHeight: 0
 --- !u!1 &983136715
 GameObject:
   m_ObjectHideFlags: 0
@@ -9389,6 +9407,8 @@ MonoBehaviour:
   CustomTag: NPCs
   RotationItem: {x: 0, y: 0, z: 0}
   YItemPosition: 0
+  gridWidth: 0
+  gridHeight: 0
 --- !u!224 &985359593 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224598970555657276, guid: 271fd70f3b73450428aa0a38d9c136be,
@@ -12301,8 +12321,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellSize: 1
-  gridWidth: 20
-  gridHeight: 20
+  gridWidth: 10
+  gridHeight: 10
   yOffset: 0.5
   cellMaterialValid: {fileID: 2100000, guid: 0155a05e6d4810446ba797607440a791, type: 2}
   cellMaterialInvalid: {fileID: 2100000, guid: c5854ba8832e7bf46b29afe249512788, type: 2}
@@ -12326,6 +12346,8 @@ MonoBehaviour:
   CustomTag: Item
   RotationItem: {x: 0, y: 0, z: 0}
   YItemPosition: 0
+  gridWidth: 5
+  gridHeight: 5
 --- !u!224 &1285598778 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224611877674509880, guid: c1fbf2d8f200c5040b46bb490640f946,
@@ -17211,6 +17233,8 @@ MonoBehaviour:
   CustomTag: Resources
   RotationItem: {x: 0, y: 0, z: 0}
   YItemPosition: 0
+  gridWidth: 5
+  gridHeight: 5
 --- !u!1001 &1843190381
 Prefab:
   m_ObjectHideFlags: 0
@@ -17768,6 +17792,8 @@ MonoBehaviour:
   CustomTag: Resources
   RotationItem: {x: 0, y: 0, z: 0}
   YItemPosition: 0.2
+  gridWidth: 0
+  gridHeight: 0
 --- !u!224 &1916997246 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224611877674509880, guid: c1fbf2d8f200c5040b46bb490640f946,
@@ -17793,6 +17819,8 @@ MonoBehaviour:
   CustomTag: 
   RotationItem: {x: 0, y: 0, z: 0}
   YItemPosition: 0
+  gridWidth: 20
+  gridHeight: 20
 --- !u!1001 &1956702652
 Prefab:
   m_ObjectHideFlags: 0
@@ -18151,6 +18179,8 @@ MonoBehaviour:
   CustomTag: 
   RotationItem: {x: 0, y: 0, z: 0}
   YItemPosition: -3.5
+  gridWidth: 20
+  gridHeight: 20
 --- !u!1001 &1983923212
 Prefab:
   m_ObjectHideFlags: 0
@@ -18297,6 +18327,8 @@ MonoBehaviour:
   CustomTag: Item
   RotationItem: {x: 0, y: 0, z: 0}
   YItemPosition: 4
+  gridWidth: 5
+  gridHeight: 5
 --- !u!1001 &2002804759
 Prefab:
   m_ObjectHideFlags: 0
@@ -19051,6 +19083,8 @@ MonoBehaviour:
   CustomTag: Item
   RotationItem: {x: 0, y: 0, z: 0}
   YItemPosition: 0
+  gridWidth: 5
+  gridHeight: 5
 --- !u!224 &2067867722 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224598970555657276, guid: 271fd70f3b73450428aa0a38d9c136be,
@@ -19542,6 +19576,8 @@ MonoBehaviour:
   CustomTag: Item
   RotationItem: {x: 0, y: 0, z: 0}
   YItemPosition: 0
+  gridWidth: 5
+  gridHeight: 5
 --- !u!1 &2125733028
 GameObject:
   m_ObjectHideFlags: 0

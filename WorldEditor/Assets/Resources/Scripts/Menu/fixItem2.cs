@@ -6,6 +6,8 @@ public class fixItem2 : MonoBehaviour {
      public string CustomTag = "";
      public Vector3 RotationItem;
      public float YItemPosition;
+     public int gridWidth = 0;
+     public int gridHeight = 0;
 
      private Button btn;
      private bool ReadyToFix = false;
@@ -20,6 +22,8 @@ public class fixItem2 : MonoBehaviour {
      private void TaskOnClick() {          
           if (ItemToFix != null) {    
                ReadyToFix = true;
+               if (gridHeight != 0) GlobalVariables.GridHeight = gridHeight;
+               if (gridWidth != 0) GlobalVariables.GridWidth = gridWidth;
           }
           //Debug.Log(string.Format("ReadyToFix: {0}", ReadyToFix));
      }
@@ -54,6 +58,8 @@ public class fixItem2 : MonoBehaviour {
                ReadyToFix = false;
                RotationItem.y = 0;
                obj = null;
+               GlobalVariables.GridHeight = 0;
+               GlobalVariables.GridWidth = 0;
           }
 
           //Debug.Log(string.Format("ReadyToFix: {0}", ReadyToFix));
