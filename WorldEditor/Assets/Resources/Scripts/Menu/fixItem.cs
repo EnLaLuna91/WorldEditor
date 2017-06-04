@@ -1,71 +1,113 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class fixItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
-     //public GameObject itemToFix;
-     public GameObject itemToFix;
-     GameObject hoverPrefab;
+public class fixItem : MonoBehaviour {
+     public GameObject ItemToFix;
+     public string CustomTag = "";
+     public Vector3 RotationItem;
+     public float YItemPosition;
+     public int gridWidth = 0;
+     public int gridHeight = 0;
 
-     // Use this for initialization
-     void Start() {
-          hoverPrefab = Instantiate(itemToFix);
-          AdjustPrefabAlpha();
-          hoverPrefab.SetActive(false);
+     private Button btn;
+     private bool ReadyToFix = false;
+     private GameObject obj = null;
+     private string Layer = "";
+
+     private void Start() {
+          btn = GetComponent<Button>();
+          btn.onClick.AddListener(TaskOnClick);
      }
 
-     void AdjustPrefabAlpha() {
-          MeshRenderer[] meshRenderers = hoverPrefab.GetComponentsInChildren<MeshRenderer>();
-          for (int i = 0; i < meshRenderers.Length; i++) {
-               Material mat = meshRenderers[i].material;
-               meshRenderers[i].material.color = new Color(mat.color.r, mat.color.g, mat.color.b, 0.5f);
+     private void TaskOnClick() {
+          if (ItemToFix != null) {
+               ReadyToFix = true;
+               if (gridHeight != 0) GlobalVariables.GridHeight = gridHeight;
+               if (gridWidth != 0) GlobalVariables.GridWidth = gridWidth;
           }
+          //Debug.Log(string.Format("ReadyToFix: {0}", ReadyToFix));
      }
 
-     // Update is called once per frame
-     void Update() {
+     private void Update() {
+
+          if (ReadyToFix) ShowItem();
+          if (Input.GetMouseButtonDown(1) && GlobalVariables.CanFixItem && ReadyToFix) RotateItem();
+          if (Input.GetMouseButtonDown(0) && GlobalVariables.CanFixItem && ReadyToFix) InsertItem();
 
      }
 
-     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData) {
-          // Debug.Log("Beginning drag");
+
+     private void InsertItem() {
+          Debug.Log(string.Format("Insert Obj: {0}\tLayer: {1}", obj.name, Layer));
+
+          obj.layer = LayerMask.NameToLayer(Layer);
+          ChangeLayerRecursive(obj.transform, Layer);
+
+          if (CustomTag != "") obj.tag = CustomTag;
+
+          if (obj.tag == "Objectives") GlobalVariables.ObjectivesIsSelected = true;
+          if (obj.tag == "Resources") GlobalVariables.ResourcesIsSelected = true;
+          if (obj.tag == "Item") GlobalVariables.ItemsIsSelected = true;
+          if (obj.tag == "NPCs") GlobalVariables.NPCsIsSelected = true;
+
+          //Debug.Log(string.Format("Obj.layer: {0}\tLayer: {1}", LayerMask.LayerToName(obj.layer), Layer));
+
+          if (GlobalVariables.IsCtrlPressed) ReadyToFix = true;
+          else {
+               Debug.Log(string.Format("No continue insert"));
+               ReadyToFix = false;
+               RotationItem.y = 0;
+               obj = null;
+               GlobalVariables.GridHeight = 0;
+               GlobalVariables.GridWidth = 0;
+          }
+
+          //Debug.Log(string.Format("ReadyToFix: {0}", ReadyToFix));
      }
 
-     public void OnDrag(PointerEventData eventData) {
-          // Debug.Log(eventData);
-          RaycastHit[] hits;
+     private void RotateItem() {
+
+          if (GlobalVariables.IsShiftPressed) RotationItem.y -= 90;
+          else RotationItem.y += 90;
+
+          if (RotationItem.y >= 360 || RotationItem.y <= -360) RotationItem.y = 0;
+
+          obj.transform.rotation = Quaternion.Euler(RotationItem);
+
+          //Debug.Log(string.Format("Rotation: {0}", RotationItem));
+     }
+
+     private Vector3 RayCast() {
+          RaycastHit hitInfo;
           Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-          hits = Physics.RaycastAll(ray, 50f);
-          if (hits != null && hits.Length > 0) {
-               int terrainCollderQuadIndex = GetTerrainColliderQuadIndex(hits);
-               if (terrainCollderQuadIndex != -1) {
-                    hoverPrefab.transform.position = hits[terrainCollderQuadIndex].point;
-                    hoverPrefab.SetActive(true);
-                    // Debug.Log (hits [terrainCollderQuadIndex].point);
-               } else {
-                    hoverPrefab.SetActive(false);
+          //Debug.Log(string.Format("RayCast: {0}\tpos: {1}", Physics.Raycast(ray, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Terrain")), hitInfo.point));
+          if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Terrain")))
+               return new Vector3(hitInfo.point.x, hitInfo.point.y + YItemPosition, hitInfo.point.z);
+          else return new Vector3(0, 0, 0);
+     }
+
+     private void ShowItem() {
+          Vector3 pos = RayCast();
+          //Debug.Log(string.Format("ShowItem\tpos: {0}\tobj; {1}", pos, obj));
+          if (pos != new Vector3(0, 0, 0)) {
+               if (obj == null) {
+                    obj = Instantiate(ItemToFix, pos, Quaternion.Euler(RotationItem)) as GameObject;
+                    Layer = LayerMask.LayerToName(obj.layer);
+                    obj.layer = LayerMask.NameToLayer("Default");
+                    ChangeLayerRecursive(obj.transform, "Default");
+                    //Debug.Log(string.Format("Create Obj: {0}\tLayer: {1}\tNew layer: {2}", obj.name, Layer, LayerMask.LayerToName(obj.layer)));
                }
+               Debug.Log(string.Format("Pos: {0}\tYpos: {1}", pos, YItemPosition));
+               obj.transform.position = pos;
           }
      }
 
-     int GetTerrainColliderQuadIndex(RaycastHit[] hits) {
-          for (int i = 0; i < hits.Length; i++) {
-               if (hits[i].collider.gameObject.name.Equals("TerrainColliderQuad")) {
-                    return i;
+     private void ChangeLayerRecursive(Transform trans, string name) {
+          foreach (Transform child in trans) {
+               if (child.gameObject.layer != LayerMask.NameToLayer("Water")) {
+                    child.gameObject.layer = LayerMask.NameToLayer(name);
+                    ChangeLayerRecursive(child, name);
                }
           }
-
-          return -1;
-     }
-
-     public void OnEndDrag(PointerEventData eventData) {
-          // If the prefab instance is active after dragging stopped, it means
-          // it's in the arena so (for now), just drop it in.
-          if (hoverPrefab.activeSelf) {
-               Instantiate(itemToFix, hoverPrefab.transform.position, Quaternion.identity);
-          }
-
-          // Then set it to inactive ready for the next drag!
-          hoverPrefab.SetActive(false);
      }
 }
