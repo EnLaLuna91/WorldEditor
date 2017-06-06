@@ -32,7 +32,7 @@ public class TerrainGrid : MonoBehaviour {
           if (GlobalVariables.GridHeight != 0) gridHeight = GlobalVariables.GridHeight;
           else gridHeight = baseGridHeight;
 
-          if (!GlobalVariables.inGameMode && GlobalVariables.TerrainIsLoad) {
+          if (!GlobalVariables.inGameMode && GlobalVariables.TerrainIsLoad && !GlobalVariables.FixTexture) {
                UpdateSize();
                UpdatePosition();
                UpdateHeights();

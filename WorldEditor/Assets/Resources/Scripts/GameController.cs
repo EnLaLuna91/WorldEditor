@@ -64,6 +64,8 @@ public class GameController : MonoBehaviour {
 
           GlobalVariables.GridWidth = 0;
           GlobalVariables.GridHeight = 0;
+
+          GlobalVariables.FixTexture = false;
      } 
 
      #endregion

@@ -32,4 +32,6 @@ public static class GlobalVariables {
 
      public static int GridWidth { get; set; }
      public static int GridHeight { get; set; }
+
+     public static bool FixTexture { get; set; }
 }
