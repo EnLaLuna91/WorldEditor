@@ -34,4 +34,6 @@ public static class GlobalVariables {
      public static int GridHeight { get; set; }
 
      public static bool FixTexture { get; set; }
+
+     public static Material ColorMaterial { get; set; }
 }

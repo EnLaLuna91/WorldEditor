@@ -21,6 +21,7 @@ TagManager:
   - InventorySlot
   - inGame
   - SceneName
+  - picker
   layers:
   - Default
   - TransparentFX

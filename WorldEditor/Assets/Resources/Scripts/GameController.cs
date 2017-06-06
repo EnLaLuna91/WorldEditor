@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour {
      private GameObject[] InGameMenus;
      private GameObject NameField;
      private GameObject SceneName;
+     private GameObject ColorPicker;
 
      private Camera MainCamera;
      private Camera HeroCamera;
@@ -66,6 +67,8 @@ public class GameController : MonoBehaviour {
           GlobalVariables.GridHeight = 0;
 
           GlobalVariables.FixTexture = false;
+          
+          GlobalVariables.ColorMaterial = null;
      } 
 
      #endregion
@@ -85,6 +88,8 @@ public class GameController : MonoBehaviour {
 
           NameField = GameObject.Find("SceneInputName");
           SceneName = GameObject.Find("NameScene");
+
+          ColorPicker = GameObject.Find("Picker");
      }
 
      public void InicializeMenus() {
@@ -97,6 +102,8 @@ public class GameController : MonoBehaviour {
 
           EnableFieldName(false);
           SceneName.SetActive(true);
+
+          ColorPicker.SetActive(false);
      }
 
      public void MainMenuSetActive(bool isActive) {
@@ -194,6 +201,10 @@ public class GameController : MonoBehaviour {
      }
 
      #endregion
+
+     public void PickerActive(bool active) {
+          ColorPicker.SetActive(active);
+     }
 
      void OnGUI() {
           Event e = Event.current;
