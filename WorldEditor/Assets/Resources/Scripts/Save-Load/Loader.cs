@@ -109,7 +109,7 @@ public class Loader : MonoBehaviour {
      
      private void LoadEffects(List<EffectsData> effects) {
           foreach (var fx in effects) {
-               GameObject resource = (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Assets/Explosions/VFX/Explosions/" + fx.Effect + ".prefab", typeof(GameObject));
+               GameObject resource = (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Resources/Prefabs/FX/" + fx.Effect + ".prefab", typeof(GameObject));
                GameObject objetivo = Instantiate(resource, fx.Position, fx.Rotation) as GameObject;
                GlobalVariables.FxIsSelected = true;
           }
@@ -134,7 +134,7 @@ public class Loader : MonoBehaviour {
 
      private void LoadNPCs(List<NPCsData> npcs) {
           foreach (var n in npcs) {
-               GameObject npc = (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Resources/Prefabs/Buildings/" + n.NPC + ".prefab", typeof(GameObject));
+               GameObject npc = (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Resources/Prefabs/NPCs/" + n.NPC + ".prefab", typeof(GameObject));
                GameObject pj = Instantiate(npc, n.Position, n.Rotation) as GameObject;
                pj.tag = n.Tag;
                GlobalVariables.NPCsIsSelected = true;
