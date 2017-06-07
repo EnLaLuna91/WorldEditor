@@ -21,6 +21,7 @@ public class LoadHero : MonoBehaviour {
           heroTarget.transform.position = _hero.transform.position;
           //StatsManager.instance.Setup();
           _hero.SetHealth(Hero.CurrentHealth);
+          
 
           LoadCamera();
           ChangeCameras();
@@ -48,7 +49,7 @@ public class LoadHero : MonoBehaviour {
 
      private void ChangeCameras() {
           GlobalVariables.EditorCamera.enabled = !GlobalVariables.EditorCamera.enabled;          
-          GlobalVariables.HeroCamera.transform.position = new Vector3(levelStartPoint.transform.position.x, levelStartPoint.transform.position.y + 10, levelStartPoint.transform.position.z + 10);
+          GlobalVariables.HeroCamera.transform.position = new Vector3(levelStartPoint.transform.position.x, levelStartPoint.transform.position.y + 70, levelStartPoint.transform.position.z + 50);
           GlobalVariables.HeroCamera.transform.rotation = levelStartPoint.transform.rotation;
           GlobalVariables.HeroCamera.enabled = !GlobalVariables.HeroCamera.enabled;
           Debug.Log(string.Format("ChangeCameras\nHeroCamera.Pos: {0}\tHeroCamera.Rot: {1}", GlobalVariables.HeroCamera.transform.position, GlobalVariables.HeroCamera.transform.rotation));
