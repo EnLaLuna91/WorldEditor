@@ -87,6 +87,7 @@ public class Loader : MonoBehaviour {
                GameObject objetivo = Instantiate(objective, obj.Position, obj.Rotation) as GameObject;
                objetivo.tag = obj.Tag;
                GlobalVariables.ObjectivesIsSelected = true;
+               if (obj.Material.Type != "") LoadMaterial(objetivo, obj.Material);
           }
      }
 
@@ -100,6 +101,7 @@ public class Loader : MonoBehaviour {
                GameObject objetivo = Instantiate(resource, res.Position, res.Rotation) as GameObject;
                objetivo.tag = res.Tag;
                GlobalVariables.ResourcesIsSelected = true;
+               if (res.Material.Type != "") LoadMaterial(objetivo, res.Material);
           }
      }
 
@@ -125,6 +127,7 @@ public class Loader : MonoBehaviour {
                GameObject elemento = Instantiate(item, it.Position, it.Rotation) as GameObject;
                elemento.tag = it.Tag;
                GlobalVariables.ItemsIsSelected = true;
+               if (it.Material.Type != "") LoadMaterial(elemento, it.Material);
           }
      }
 
@@ -142,7 +145,24 @@ public class Loader : MonoBehaviour {
      }
 
      #endregion
+
+     private void LoadMaterial(GameObject obj, MaterialData mat) {
+          if (mat.Type == "Color") {
+               Material[] mats = obj.GetComponentInChildren<Renderer>().materials;
+               Material material = (Material) AssetDatabase.LoadAssetAtPath("Assets/Resources/Materials/" + mat.Name + ".mat", typeof(Material));
+               material.color = mat.MatColor;
+               mats[0] = material;
+               obj.GetComponentInChildren<Renderer>().materials = mats;
+          } else if (mat.Type == "Texture") {
+               Material[] mats = obj.GetComponentInChildren<Renderer>().materials;
+               Material material = (Material) AssetDatabase.LoadAssetAtPath("Assets/Resources/Materials/" + mat.Name + ".mat", typeof(Material));
+               mats[0] = material;
+               obj.GetComponentInChildren<Renderer>().materials = mats;
+          }
+     }
      
      #endregion
+
+
           
 }

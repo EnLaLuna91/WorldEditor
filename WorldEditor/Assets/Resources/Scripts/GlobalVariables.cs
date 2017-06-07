@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public static class GlobalVariables {
 
@@ -34,6 +35,6 @@ public static class GlobalVariables {
      public static int GridHeight { get; set; }
 
      public static bool FixTexture { get; set; }
-
      public static Material ColorMaterial { get; set; }
+     public static List<TextureInElement> ElementsToChangeTexture { get; set; }
 }

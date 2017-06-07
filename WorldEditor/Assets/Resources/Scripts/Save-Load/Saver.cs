@@ -43,6 +43,8 @@ public class Saver : MonoBehaviour {
           }
      }
 
+     #region Get Elements
+
      private void GetObjectives() {
           List<ObjectivesData> newObjectives = new List<ObjectivesData>();
           GameObject[] objectives = GameObject.FindGameObjectsWithTag("Objectives");
@@ -51,13 +53,14 @@ public class Saver : MonoBehaviour {
                     Objective = item.name.Split('(')[0],
                     Tag = item.tag,
                     Position = item.transform.position,
-                    Rotation = item.transform.rotation
+                    Rotation = item.transform.rotation,
+                    Material = MatData(item)
                };
                newObjectives.Add(obj);
           }
           data.Objectives = newObjectives;
      }
-
+     
      private void GetResources() {
           List<ResourcesData> newResources = new List<ResourcesData>();
           GameObject[] resources = GameObject.FindGameObjectsWithTag("Resources");
@@ -66,7 +69,8 @@ public class Saver : MonoBehaviour {
                     Resource = item.name.Split('(')[0],
                     Tag = item.tag,
                     Position = item.transform.position,
-                    Rotation = item.transform.rotation
+                    Rotation = item.transform.rotation,
+                    Material = MatData(item)
                };
                newResources.Add(obj);
           }
@@ -86,7 +90,7 @@ public class Saver : MonoBehaviour {
           }
           data.Effects = newEffects;
      }
-
+     
      private void GetItems() {
           List<ItemsData> newItems = new List<ItemsData>();
           GameObject[] items = GameObject.FindGameObjectsWithTag("Item");
@@ -95,7 +99,8 @@ public class Saver : MonoBehaviour {
                     Item = item.name.Split('(')[0],
                     Tag = item.tag,
                     Position = item.transform.position,
-                    Rotation = item.transform.rotation
+                    Rotation = item.transform.rotation,
+                    Material = MatData(item)
                };
                newItems.Add(obj);
           }
@@ -115,6 +120,36 @@ public class Saver : MonoBehaviour {
                newNPCs.Add(obj);
           }
           data.NPCs = newNPCs;
-     }     
+     } 
+
+     #endregion
+
+     
+     private MaterialData MatData(GameObject item) {
+          Material material = item.GetComponentInChildren<Renderer>().materials[0];
+          MaterialData mat;
+          if (ExistItem(item)) {
+               if (material.name.Split('(')[0].TrimEnd() == "ColorMat") {
+                    mat = new MaterialData {
+                         Type = "Color",
+                         Name = material.name.Split('(')[0].TrimEnd(),
+                         MatColor = material.color
+                    };
+               } else {
+                    mat = new MaterialData {
+                         Type = "Texture",
+                         Name = material.name.Split('(')[0].TrimEnd(),
+                         MatColor = material.color
+                    };
+               }
+               //Debug.Log(string.Format("Mat Type {0}\tName {1}\tColor {2}", mat.Type, mat.Name, mat.MatColor));
+          } else mat = null;
+          //Debug.Log(string.Format("Mat {0}", mat));
+          return mat;
+     }
+
+     private bool ExistItem(GameObject item) {
+          return GlobalVariables.ElementsToChangeTexture.Exists(x => x.ItemID == item.GetInstanceID());
+     }
 }
 

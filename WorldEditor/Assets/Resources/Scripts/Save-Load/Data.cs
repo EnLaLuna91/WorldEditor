@@ -28,6 +28,7 @@ public class ObjectivesData {
      public string Tag;
      public Vector3 Position;
      public Quaternion Rotation;
+     public MaterialData Material;
 }
 
 [Serializable]
@@ -37,7 +38,7 @@ public class ResourcesData {
      public string Tag;
      public Vector3 Position;
      public Quaternion Rotation;
-     public Material Material;
+     public MaterialData Material;
 }
 
 [Serializable]
@@ -55,7 +56,7 @@ public class ItemsData {
      public string Tag;
      public Vector3 Position;
      public Quaternion Rotation;
-     public Material Material;
+     public MaterialData Material;
 }
 
 [Serializable]
@@ -65,5 +66,11 @@ public class NPCsData {
      public string Tag;
      public Vector3 Position;
      public Quaternion Rotation;
-     public Material Material;
+}
+
+[Serializable]
+public class MaterialData {
+     public string Type;
+     public string Name;
+     public Color MatColor;
 }

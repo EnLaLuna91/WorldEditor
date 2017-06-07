@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class ChangeTexture : MonoBehaviour {
@@ -41,7 +42,7 @@ public class ChangeTexture : MonoBehaviour {
                //Debug.Log(string.Format("Item.name: {0}\tItem.GetComponentInChildren<Renderer>().materials.Length: {1}", item.name, item.GetComponentInChildren<Renderer>().materials.Length));
                //int i = 0;
                //foreach (Material mat in item.GetComponentInChildren<Renderer>().materials) {
-               //     Debug.Log(string.Format("Mat[{0}].name: {1}",i++, mat.name));
+               //     Debug.Log(string.Format("Mat[{0}].name: {1}", i++, mat.name));
                //}
                Material[] mats = item.GetComponentInChildren<Renderer>().materials;
                mats[0] = Texture;
@@ -49,6 +50,9 @@ public class ChangeTexture : MonoBehaviour {
                //item.GetComponentInChildren<Renderer>().materials[0].shader = Texure.shader;
                ReadyToFix = false;
                GlobalVariables.FixTexture = false;
+               AddOrUpdateItem(item);
+
+              
           }
      }
 
@@ -59,6 +63,31 @@ public class ChangeTexture : MonoBehaviour {
           if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Buildings"))) {
                return hitInfo.transform.gameObject;
           } else return null;
+     }
+
+     private void AddOrUpdateItem(GameObject item) {
+          if (ExistItem(item)) {
+               var obj = GlobalVariables.ElementsToChangeTexture.FirstOrDefault(x => x.ItemID == item.GetInstanceID());
+               //Debug.Log(string.Format("Item {0} change material from: {1} to {2}", item.GetInstanceID(), obj.ItemMaterial.name, Texture.name));
+               if (obj != null) obj.ItemMaterial = Texture;               
+          } else {
+               GlobalVariables.ElementsToChangeTexture.Add(
+               new TextureInElement {
+                    ItemName = item.name,
+                    ItemID = item.GetInstanceID(),
+                    ItemMaterial = Texture
+               });
+          }
+          //Debug.Log(GlobalVariables.ElementsToChangeTexture.LastOrDefault().ToString());
+
+          //Debug.Log(string.Format("GlobalVariables.ElementsToChangeTexture.Count: {0}", GlobalVariables.ElementsToChangeTexture.Count));
+          //foreach (var obj in GlobalVariables.ElementsToChangeTexture) {
+          //     Debug.Log(obj.ToString());
+          //}
+     }
+
+     private bool ExistItem(GameObject item) {
+          return GlobalVariables.ElementsToChangeTexture.Exists(x => x.ItemID == item.GetInstanceID());
      }
 
 }
