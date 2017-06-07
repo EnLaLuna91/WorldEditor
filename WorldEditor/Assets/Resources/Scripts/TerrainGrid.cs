@@ -134,7 +134,7 @@ public class TerrainGrid : MonoBehaviour {
           RaycastHit hitInfo;
           Vector3 origin = new Vector3(x * cellSize + cellSize / 2, 200, z * cellSize + cellSize / 2);
           Physics.Raycast(transform.TransformPoint(origin), Vector3.down, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Buildings"));
-
+          //Debug.Log(string.Format("Ray cast pos: {0}", hitInfo.point));
           return hitInfo.collider == null;
      }
 

@@ -9,7 +9,7 @@ public class Bird : MonoBehaviour {
     Animation _animation;
     GameObject[] _birdNodes;
     private GameObject _actualDestination;
-    protected float birdSpeed = 3f;
+    protected float birdSpeed = 10f;
     public AudioClip sound;
     protected AudioSource audioSource;
     private float _nextSoundPlay = 0f;
