@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class ChangeName : MonoBehaviour {
+public class OpenChangeName : MonoBehaviour {
 
      private Button btn;
      private GameController gameController;

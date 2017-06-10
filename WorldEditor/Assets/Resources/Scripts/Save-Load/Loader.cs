@@ -49,7 +49,7 @@ public class Loader : MonoBehaviour {
 
      #region Terrain
      private void LoadTerrainFromJSON(string terrainName) {
-          TerrainConf terrain = new TerrainConf();
+          LoadTerrain terrain = new LoadTerrain();
           terrain.RemoveTerrain();
           GameObject Terrain = (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Resources/Prefabs/Maps/" + terrainName + ".prefab", typeof(GameObject));
           terrain.SetTerrain(Terrain);

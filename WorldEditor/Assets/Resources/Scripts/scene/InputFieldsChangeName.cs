@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InputFields : MonoBehaviour {
+public class InputFieldsChangeName : MonoBehaviour {
 
      private InputField Name;
      private InputField Desc;
