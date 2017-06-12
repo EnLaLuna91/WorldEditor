@@ -1,8 +1,32 @@
-﻿using UnityEditor;
+﻿using SFB;
+using System.Collections;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Para poder ver la clase en el Inspector de Unity
+[System.Serializable]
+public class OpenFileBrowser {
+     public string Title = "";
+     public string FileName = "";
+     public string Directory = "";
+     public string Extension = "";
+     public bool Multiselect = false;
+}
+
+// Para poder ver la clase en el Inspector de Unity
+[System.Serializable]
+public class SaveFileBrowser {
+     public string Title = "";
+     public string Directory = "";
+     public string FileName = "";
+     public string Extension = "";
+}
+
 public class ExtraButtons : MonoBehaviour {
+
+     public OpenFileBrowser openFile;
+     public SaveFileBrowser saveFile;
 
      private GameController gameController;
      private Button btn;
@@ -38,19 +62,31 @@ public class ExtraButtons : MonoBehaviour {
 
      private void SaveButton() {
           Debug.Log("Save");
-          string path = EditorUtility.SaveFilePanel("Save scene as json", "", GlobalVariables.SceneName.ToLower() + ".json", "json");
-          Saver save = new Saver();
-          save.StoreData(path);
+          //string path = EditorUtility.SaveFilePanel("Save scene as json", "", GlobalVariables.SceneName.ToLower() + ".json", "json");
+          var path = StandaloneFileBrowser.SaveFilePanel(saveFile.Title, saveFile.Directory, GlobalVariables.SceneName.ToLower() + ".json", saveFile.Extension);
+          if (!string.IsNullOrEmpty(path)) {
+               Saver save = new Saver();
+               File.WriteAllText(path, save.SerializeScenary());
+          }
+          
+          
      }
 
      private void LoadButton() {
           Debug.Log("Load");
-          string path = EditorUtility.OpenFilePanel("Open scene", "", "json");
+
+          //string path = EditorUtility.OpenFilePanel("Open scene", "", "json");
+
+          var paths = StandaloneFileBrowser.OpenFilePanel(openFile.Title, openFile.Directory, openFile.Extension, openFile.Multiselect);
+          if (paths.Length > 0) {
+               StartCoroutine(OutputRoutine(new System.Uri(paths[0]).AbsoluteUri));
+          }
+
           //Debug.Log(string.Format("Path.Length: {0}\tPath: {1}", path.Length, path));
-          if (path.Length != 0) {
-               Loader load = new Loader(gameController);
-               load.LoadData(path);
-          }          
+          //if (path.Length != 0) {
+          //     Loader load = new Loader(gameController);
+          //     load.LoadData(path);
+          //}          
      }
 
      private void StartButton() {
@@ -64,5 +100,14 @@ public class ExtraButtons : MonoBehaviour {
 
      private void ExitButton() {
           Debug.Log("Leave");
+     }
+
+     private IEnumerator OutputRoutine(string url) {
+          var loader = new WWW(url);
+          yield return loader;
+          //output = loader.text;
+          //Debug.Log(string.Format("output: {0}", output));
+          Loader load = new Loader(gameController);
+          load.LoadData(loader.text);
      }
 }

@@ -12,9 +12,9 @@ public class Loader : MonoBehaviour {
           gameController = controller;
      }
 
-     public void LoadData(string path) {
+     public void LoadData(string text) {
           //Debug.Log(string.Format("Path: {0}", path));
-          string text = ReadJson(path);
+          //string text = ReadJson(path);
 
           //Debug.Log(string.Format("JSON:\n{0}", text));
           SaverData data = Deserialize(text);

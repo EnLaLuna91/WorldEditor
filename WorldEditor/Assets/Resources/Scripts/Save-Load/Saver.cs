@@ -2,14 +2,13 @@
 using SerializerFree.Serializers;
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor;
 using UnityEngine;
 
 public class Saver : MonoBehaviour {
 
      private SaverData data = new SaverData();
      
-     public void StoreData(string path) {
+     public string SerializeScenary() {
           //Debug.Log(string.Format("Path: {0}", path));
 
           data.SceneName = GlobalVariables.SceneName;
@@ -23,11 +22,11 @@ public class Saver : MonoBehaviour {
           GetItems();
           GetNPCs();
 
-          string output = Serialize();
+          return Serialize();
 
           //Debug.Log(string.Format("Serializer: \n{0}", output));
 
-          WriteJSON(path, output);
+          
 
      }     
 
@@ -35,13 +34,13 @@ public class Saver : MonoBehaviour {
           return Serializer.Serialize(data, new UnityJsonSerializer());
      }
 
-     private void WriteJSON(string path, string output) {
-          using (FileStream fs = new FileStream(path, FileMode.Create)) {
-               using (StreamWriter writer = new StreamWriter(fs)) {
-                    writer.Write(output);
-               }
-          }
-     }
+     //private void WriteJSON(string path, string output) {
+     //     using (FileStream fs = new FileStream(path, FileMode.Create)) {
+     //          using (StreamWriter writer = new StreamWriter(fs)) {
+     //               writer.Write(output);
+     //          }
+     //     }
+     //}
 
      #region Get Elements
 
