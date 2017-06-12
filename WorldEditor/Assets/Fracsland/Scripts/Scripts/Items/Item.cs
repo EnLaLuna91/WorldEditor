@@ -1,14 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using Utils;
-using System.Collections.Generic;
-using UnityEditor;
 
-namespace Items
-{
-    /// <summary>
-    /// This is the base class of all our items in te game
-    /// </summary>
-    public class Item {
+namespace Items {
+     /// <summary>
+     /// This is the base class of all our items in te game
+     /// </summary>
+     public class Item {
 
         public static Item Wood = new Item(Constants.ID_WOOD, "Wood", "inventory_wood");
 
@@ -44,16 +42,16 @@ namespace Items
         {
             _id = id;
             _name = name;
-            //_inventoryRepresentation = (Sprite) AssetDatabase.LoadAssetAtPath("Assets/Fracsland/Resources/Media/Images/" + image + ".png", typeof(Sprite));
-            _inventoryRepresentation = null;
+               //_inventoryRepresentation = Instantiate(Resources.Load<Sprite>("Fracsland/Media/Images/" + image));
+               _inventoryRepresentation = null;
           }
 
         public Item(int id, string name, bool isConsumible, string image, int goldAmmount, int diamondsAmmount)
         {
             _id = id;
             _name = name;
-            //_inventoryRepresentation = (Sprite) AssetDatabase.LoadAssetAtPath("Assets/Fracsland/Resources/Media/Images/" + image + ".png", typeof(Sprite));
-            _inventoryRepresentation = null;
+               // _inventoryRepresentation = Instantiate(Resources.Load<Sprite>("Fracsland/Media/Images/" + image));
+               _inventoryRepresentation = null;
             _goldAmmount = goldAmmount;
             _diamondsAmmount = diamondsAmmount;
         }

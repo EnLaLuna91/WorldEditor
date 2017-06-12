@@ -51,7 +51,7 @@ public class Loader : MonoBehaviour {
      private void LoadTerrainFromJSON(string terrainName) {
           LoadTerrain terrain = new LoadTerrain();
           terrain.RemoveTerrain();
-          GameObject Terrain = (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Resources/Prefabs/Maps/" + terrainName + ".prefab", typeof(GameObject));
+          GameObject Terrain = Instantiate(Resources.Load<GameObject>("Prefabs/Maps/" + terrainName));
           terrain.SetTerrain(Terrain);
      }
      #endregion
@@ -66,10 +66,9 @@ public class Loader : MonoBehaviour {
      } 
 
      private Material FindSkyBox(string SkyName) {
-          Material sky = (Material) AssetDatabase.LoadAssetAtPath("Assets/Standard Assets/Skyboxes/" + SkyName + ".mat", typeof(Material));
+          Material sky = Instantiate(Resources.Load<Material>("Materials/Skyboxes/" + SkyName));
           if (sky == null){
-               sky = (Material) AssetDatabase.LoadAssetAtPath("Assets/Standard Assets/Skyboxes/sky5X/sky5X_skyboxes/" + SkyName + ".mat", typeof(Material));               
-               //Debug.Log("Secondary Folder");
+               sky = Instantiate(Resources.Load<Material>("Materials/Skyboxes/sky5X/sky5X_skyboxes/" + SkyName));             
           }
           //Debug.Log(string.Format("Sky: {0}", sky));
           return sky;
@@ -80,9 +79,9 @@ public class Loader : MonoBehaviour {
 
      private void LoadObjectives(List<ObjectivesData> objectives) {
           foreach(var obj in objectives) {
-               GameObject objective = (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Resources/Prefabs/Buildings/" + obj.Objective + ".prefab", typeof(GameObject));
+               GameObject objective = Instantiate(Resources.Load<GameObject>("Prefabs/Buildings/" + obj.Objective));
                if (objective == null) {
-                    objective = (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Fracsland/Prefabs/" + obj.Objective + ".prefab", typeof(GameObject));
+                    objective = Instantiate(Resources.Load<GameObject>("Prefabs/" + obj.Objective));
                }
                GameObject objetivo = Instantiate(objective, obj.Position, obj.Rotation) as GameObject;
                objetivo.tag = obj.Tag;
@@ -97,7 +96,7 @@ public class Loader : MonoBehaviour {
 
      private void LoadResources(List<ResourcesData> resources) {
           foreach (var res in resources) {
-               GameObject resource = (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Resources/Prefabs/Buildings/" + res.Resource + ".prefab", typeof(GameObject));
+               GameObject resource = Instantiate(Resources.Load<GameObject>("Prefabs/Buildings/" + res.Resource));
                GameObject objetivo = Instantiate(resource, res.Position, res.Rotation) as GameObject;
                objetivo.tag = res.Tag;
                GlobalVariables.ResourcesIsSelected = true;
@@ -111,7 +110,7 @@ public class Loader : MonoBehaviour {
      
      private void LoadEffects(List<EffectsData> effects) {
           foreach (var fx in effects) {
-               GameObject resource = (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Resources/Prefabs/FX/" + fx.Effect + ".prefab", typeof(GameObject));
+               GameObject resource = Instantiate(Resources.Load<GameObject>("Prefabs/FX/" + fx.Effect));
                GameObject objetivo = Instantiate(resource, fx.Position, fx.Rotation) as GameObject;
                GlobalVariables.FxIsSelected = true;
           }
@@ -123,7 +122,7 @@ public class Loader : MonoBehaviour {
 
      private void LoadItems(List<ItemsData> items) {
           foreach (var it in items) {
-               GameObject item = (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Resources/Prefabs/Buildings/" + it.Item + ".prefab", typeof(GameObject));
+               GameObject item = Instantiate(Resources.Load<GameObject>("Prefabs/Buildings/" + it.Item));
                GameObject elemento = Instantiate(item, it.Position, it.Rotation) as GameObject;
                elemento.tag = it.Tag;
                GlobalVariables.ItemsIsSelected = true;
@@ -137,7 +136,7 @@ public class Loader : MonoBehaviour {
 
      private void LoadNPCs(List<NPCsData> npcs) {
           foreach (var n in npcs) {
-               GameObject npc = (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Resources/Prefabs/NPCs/" + n.NPC + ".prefab", typeof(GameObject));
+               GameObject npc = Instantiate(Resources.Load<GameObject>("Prefabs/NPCs/" + n.NPC));
                GameObject pj = Instantiate(npc, n.Position, n.Rotation) as GameObject;
                pj.tag = n.Tag;
                GlobalVariables.NPCsIsSelected = true;
@@ -149,13 +148,13 @@ public class Loader : MonoBehaviour {
      private void LoadMaterial(GameObject obj, MaterialData mat) {
           if (mat.Type == "Color") {
                Material[] mats = obj.GetComponentInChildren<Renderer>().materials;
-               Material material = (Material) AssetDatabase.LoadAssetAtPath("Assets/Resources/Materials/" + mat.Name + ".mat", typeof(Material));
+               Material material = Instantiate(Resources.Load<Material>("Materials/" + mat.Name));
                material.color = mat.MatColor;
                mats[0] = material;
                obj.GetComponentInChildren<Renderer>().materials = mats;
           } else if (mat.Type == "Texture") {
                Material[] mats = obj.GetComponentInChildren<Renderer>().materials;
-               Material material = (Material) AssetDatabase.LoadAssetAtPath("Assets/Resources/Materials/" + mat.Name + ".mat", typeof(Material));
+               Material material = Instantiate(Resources.Load<Material>("Materials/" + mat.Name));
                mats[0] = material;
                obj.GetComponentInChildren<Renderer>().materials = mats;
           }

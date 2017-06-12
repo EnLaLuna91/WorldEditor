@@ -12,9 +12,11 @@ public class LoadHero : MonoBehaviour {
 
           if (!GetStartPoint()) return;
 
-          GameObject heroPrefab = (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Fracsland/Resources/Media/UsingPrefabs/Hero.prefab", typeof(GameObject));          
+          
+
+          GameObject heroPrefab = Instantiate(Resources.Load<GameObject>("Fracsland/Media/UsingPrefabs/Hero"));
           GameObject h = (GameObject) Instantiate(heroPrefab, levelStartPoint.transform.position, levelStartPoint.transform.rotation);
-          GameObject heroTarget = GameObject.Instantiate((GameObject) AssetDatabase.LoadAssetAtPath("Assets/Fracsland/Resources/Media/UsingPrefabs/HeroTarget.prefab", typeof(GameObject)));
+          GameObject heroTarget = GameObject.Instantiate(Resources.Load<GameObject>("Fracsland/Media/UsingPrefabs/HeroTarget"));
                     
           _hero = h.GetComponent<Hero>();
           _hero.target = heroTarget.GetComponent<HeroTarget>();
@@ -40,7 +42,7 @@ public class LoadHero : MonoBehaviour {
      private void LoadCamera() {
           //GlobalVariables.EditorCamera = Camera.main;
           if (GlobalVariables.HeroCamera == null) {
-               Camera cam = (Camera) AssetDatabase.LoadAssetAtPath("Assets/Resources/Prefabs/Camera/Camera.prefab", typeof(Camera));
+               Camera cam = Instantiate(Resources.Load<Camera>("Prefabs/Camera/Camera"));
                GlobalVariables.HeroCamera = Camera.Instantiate(cam, levelStartPoint.transform.position, levelStartPoint.transform.rotation);
                GlobalVariables.HeroCamera.enabled = false;
                Debug.Log(string.Format("LoadCamera\nHeroCamera.Pos: {0}\tHeroCamera.Rot: {1}", GlobalVariables.HeroCamera.transform.position, GlobalVariables.HeroCamera.transform.rotation));
