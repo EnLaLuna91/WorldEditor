@@ -53,6 +53,7 @@ public class Loader : MonoBehaviour {
           terrain.RemoveTerrain();
           GameObject Terrain = Instantiate(Resources.Load<GameObject>("Prefabs/Maps/" + terrainName));
           terrain.SetTerrain(Terrain);
+          Destroy(terrain);
      }
      #endregion
 
@@ -87,6 +88,7 @@ public class Loader : MonoBehaviour {
                objetivo.tag = obj.Tag;
                GlobalVariables.ObjectivesIsSelected = true;
                if (obj.Material.Type != "") LoadMaterial(objetivo, obj.Material);
+               Destroy(objective);
           }
      }
 
@@ -101,6 +103,7 @@ public class Loader : MonoBehaviour {
                objetivo.tag = res.Tag;
                GlobalVariables.ResourcesIsSelected = true;
                if (res.Material.Type != "") LoadMaterial(objetivo, res.Material);
+               Destroy(resource);
           }
      }
 
@@ -113,6 +116,7 @@ public class Loader : MonoBehaviour {
                GameObject resource = Instantiate(Resources.Load<GameObject>("Prefabs/FX/" + fx.Effect));
                GameObject objetivo = Instantiate(resource, fx.Position, fx.Rotation) as GameObject;
                GlobalVariables.FxIsSelected = true;
+               Destroy(resource);
           }
      }
 
@@ -127,6 +131,7 @@ public class Loader : MonoBehaviour {
                elemento.tag = it.Tag;
                GlobalVariables.ItemsIsSelected = true;
                if (it.Material.Type != "") LoadMaterial(elemento, it.Material);
+               Destroy(item);
           }
      }
 
@@ -140,6 +145,7 @@ public class Loader : MonoBehaviour {
                GameObject pj = Instantiate(npc, n.Position, n.Rotation) as GameObject;
                pj.tag = n.Tag;
                GlobalVariables.NPCsIsSelected = true;
+               Destroy(npc);
           }
      }
 

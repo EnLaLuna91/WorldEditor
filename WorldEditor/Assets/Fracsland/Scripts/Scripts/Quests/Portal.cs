@@ -12,9 +12,11 @@ public class Portal : MonoBehaviour {
     public MainCameraController.CAMERA_ORIENTATION levelOrientation;
 
 	void Update () {
-        if (LevelController.instance.Hero == null) return;
-		if (Vector3.Distance (LevelController.instance.Hero.transform.position, transform.position) < 1f) {
-            LevelController.instance.RequestPositioningInfrontOfPortal(portalID, DestinationScene, destinationPosition);
-        }	
+          //if (LevelController.instance.Hero == null) return;
+          //if (LevelController.instance.Hero != null) {
+          //     if (Vector3.Distance(LevelController.instance.Hero.transform.position, transform.position) < 1f) {
+          //          LevelController.instance.RequestPositioningInfrontOfPortal(portalID, DestinationScene, destinationPosition);
+          //     }
+          //}
 	}
 }

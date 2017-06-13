@@ -33,8 +33,8 @@ public class Interactable : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        questManager = GameObject.Find("_SCRIPTS").GetComponent<QuestManager>();
-        gameEvent = questManager.CreateGameEvent(selectedGameEvent, gameObject);
+        //questManager = GameObject.Find("_SCRIPTS").GetComponent<QuestManager>();
+        //gameEvent = questManager.CreateGameEvent(selectedGameEvent, gameObject);
         _defaultName = name;
         //If it has been requested to disable after configure it is done here:
         this.enabled = !_disableAfterConfigure;
@@ -43,14 +43,14 @@ public class Interactable : MonoBehaviour
     void Update()
     {
         if (_eventDone) return;
-        if(_goingTotarget && Vector3.Distance(LevelController.instance.Hero.transform.position, _lastHeroPosition) < 0.01f 
-            && Vector3.Distance(LevelController.instance.Hero.gameObject.transform.position, transform.position) < InteractionDistance)
+        if(_goingTotarget && /*Vector3.Distance(LevelController.instance.Hero.transform.position, _lastHeroPosition) < 0.01f 
+            &&*/ Vector3.Distance(LevelController.instance.Hero.gameObject.transform.position, transform.position) < InteractionDistance)
         {
             _eventDone = true;
             if(gameEvent != null)
                 gameEvent.OnFired();
         }
-        _lastHeroPosition = LevelController.instance.Hero.transform.position; 
+        //_lastHeroPosition = LevelController.instance.Hero.transform.position; 
     }
 
     void OnMouseOver()
