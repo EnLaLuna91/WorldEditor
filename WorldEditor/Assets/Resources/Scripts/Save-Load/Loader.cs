@@ -1,7 +1,6 @@
 ﻿using SerializerFree;
 using SerializerFree.Serializers;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class Loader : MonoBehaviour {
