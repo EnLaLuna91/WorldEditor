@@ -93,7 +93,8 @@ public class ExtraButtons : MonoBehaviour {
      }
 
      private void ExitButton() {
-          Debug.Log("Leave");
+          //Debug.Log("Leave");
+          Application.Quit();
      }
 
      private IEnumerator OutputRoutine(string url) {
