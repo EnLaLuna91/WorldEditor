@@ -61,8 +61,8 @@ public class ExtraButtons : MonoBehaviour {
      }
 
      private void SaveButton() {
-          Debug.Log("Save");
-          //string path = EditorUtility.SaveFilePanel("Save scene as json", "", GlobalVariables.SceneName.ToLower() + ".json", "json");
+          //Debug.Log("Save");
+          // https://github.com/gkngkc/UnityStandaloneFileBrowser
           var path = StandaloneFileBrowser.SaveFilePanel(saveFile.Title, saveFile.Directory, GlobalVariables.SceneName.ToLower() + ".json", saveFile.Extension);
           if (!string.IsNullOrEmpty(path)) {
                Saver save = new Saver();
@@ -73,24 +73,18 @@ public class ExtraButtons : MonoBehaviour {
      }
 
      private void LoadButton() {
-          Debug.Log("Load");
+          //Debug.Log("Load");
 
-          //string path = EditorUtility.OpenFilePanel("Open scene", "", "json");
+          // https://github.com/gkngkc/UnityStandaloneFileBrowser
 
           var paths = StandaloneFileBrowser.OpenFilePanel(openFile.Title, openFile.Directory, openFile.Extension, openFile.Multiselect);
           if (paths.Length > 0) {
                StartCoroutine(OutputRoutine(new System.Uri(paths[0]).AbsoluteUri));
           }
-
-          //Debug.Log(string.Format("Path.Length: {0}\tPath: {1}", path.Length, path));
-          //if (path.Length != 0) {
-          //     Loader load = new Loader(gameController);
-          //     load.LoadData(path);
-          //}          
      }
 
      private void StartButton() {
-          Debug.Log("Start");
+          //Debug.Log("Start");
           gameController.DisableEditorMenus();
           gameController.EnableInGameMenus();
           NameInGame.UpdateText();
@@ -105,8 +99,6 @@ public class ExtraButtons : MonoBehaviour {
      private IEnumerator OutputRoutine(string url) {
           var loader = new WWW(url);
           yield return loader;
-          //output = loader.text;
-          //Debug.Log(string.Format("output: {0}", output));
           Loader load = new Loader(gameController);
           load.LoadData(loader.text);
      }
