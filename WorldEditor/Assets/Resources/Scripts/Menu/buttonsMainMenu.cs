@@ -19,6 +19,9 @@ public class buttonsMainMenu : MonoBehaviour {
 
      #region Game Controller
 
+     /// <summary>
+     /// Busca el evento del GameController
+     /// </summary>
      private void InicializeGameController() {
           GameObject gameControllerObject = GameObject.FindWithTag("GameController");
           if (gameControllerObject != null) {
@@ -102,6 +105,9 @@ public class buttonsMainMenu : MonoBehaviour {
           else DisableSubMenus();
      }
 
+     /// <summary>
+     /// Activa o desactiva el menú de Work Objects
+     /// </summary>
      private void ActiveSubMenu() {
           if (MenuToActive.transform.parent.name == "PanelRight") ActivePanelRight();
           else {
@@ -113,12 +119,19 @@ public class buttonsMainMenu : MonoBehaviour {
           gameController.ActiveGameObject(MenuToActive);
      }
 
+     /// <summary>
+     /// Activa o desactiva uno de los elementos del menú
+     /// </summary>
+     /// <param name="obj"></param>
      private void ActiveSubMenu(GameObject obj) {
           gameController.MainMenuSetActive(false);
           gameController.SubMenuSetActive(true);
           gameController.ActiveGameObject(obj);
      }
 
+     /// <summary>
+     /// Botón de retorno
+     /// </summary>
      private void BackManu() {    
           if (gameController.StackCount() > 0) {
                GameObject obj = gameController.PopGameObject();

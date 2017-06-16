@@ -7,10 +7,18 @@ public class Loader : MonoBehaviour {
 
      private GameController gameController;
 
+     /// <summary>
+     /// Al crear la clase se debe pasar el GameController
+     /// </summary>
+     /// <param name="controller">GameController</param>
      public Loader(GameController controller) {
           gameController = controller;
      }
 
+     /// <summary>
+     /// Dado un JSON, carga los elementos del JSON
+     /// </summary>
+     /// <param name="text">string JSON</param>
      public void LoadData(string text) {
           //Debug.Log(string.Format("Path: {0}", path));
           //string text = ReadJson(path);
@@ -32,19 +40,33 @@ public class Loader : MonoBehaviour {
           UpdateScene();
      }
 
-     private string ReadJson(string path) {
-          return System.IO.File.ReadAllText(path);
-     }
+     //private string ReadJson(string path) {
+     //     return System.IO.File.ReadAllText(path);
+     //}
 
+     /// <summary>
+     /// Deserializa el JSON
+     /// </summary>
+     /// <param name="json">JSON de entrada</param>
+     /// <returns>SaverData con la información de la escena</returns>
      private SaverData Deserialize(string json) {
           return Serializer.Deserialize<SaverData>(json, new UnityJsonSerializer());
      }
 
+     /// <summary>
+     /// Actualiza el nombre de la escena
+     /// </summary>
      private void UpdateScene() {
           gameController.SetSceneName();
      }
 
+
+
      #region Load Elements
+
+     /// <summary>
+     /// Inserta los distintos tipos de elementos a la escena
+     /// </summary>
 
      #region Terrain
      private void LoadTerrainFromJSON(string terrainName) {
@@ -150,6 +172,11 @@ public class Loader : MonoBehaviour {
 
      #endregion
 
+     /// <summary>
+     /// Carga al objeto en cuestión la textura o color que corresponda
+     /// </summary>
+     /// <param name="obj">GameObject a modificar la textura</param>
+     /// <param name="mat">Información de la textura o color</param>
      private void LoadMaterial(GameObject obj, MaterialData mat) {
           if (mat.Type == "Color") {
                Material[] mats = obj.GetComponentInChildren<Renderer>().materials;

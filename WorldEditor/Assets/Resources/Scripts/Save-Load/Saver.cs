@@ -8,6 +8,10 @@ public class Saver : MonoBehaviour {
 
      private SaverData data = new SaverData();
      
+     /// <summary>
+     /// Serializa el escenario
+     /// </summary>
+     /// <returns>string con la escena serializada</returns>
      public string SerializeScenary() {
           //Debug.Log(string.Format("Path: {0}", path));
 
@@ -43,6 +47,10 @@ public class Saver : MonoBehaviour {
      //}
 
      #region Get Elements
+
+     /// <summary>
+     /// Obtiene los elementos de la escena, dependiendo del tipo de elemento
+     /// </summary>
 
      private void GetObjectives() {
           List<ObjectivesData> newObjectives = new List<ObjectivesData>();
@@ -124,6 +132,11 @@ public class Saver : MonoBehaviour {
      #endregion
 
      
+     /// <summary>
+     /// Obtiene el material de un objeto en concreto, para poder serializar ese material
+     /// </summary>
+     /// <param name="item">GameObjet elemento a obtener la textura</param>
+     /// <returns>MaterialData</returns>
      private MaterialData MatData(GameObject item) {
           Material material = item.GetComponentInChildren<Renderer>().materials[0];
           MaterialData mat;

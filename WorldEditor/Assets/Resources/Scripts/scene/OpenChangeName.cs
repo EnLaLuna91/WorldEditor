@@ -14,6 +14,9 @@ public class OpenChangeName : MonoBehaviour {
 
      #region Game Controller
 
+     /// <summary>
+     /// Busca el evento del GameController
+     /// </summary>
      private void InicializeGameController() {
           GameObject gameControllerObject = GameObject.FindWithTag("GameController");
           if (gameControllerObject != null) {

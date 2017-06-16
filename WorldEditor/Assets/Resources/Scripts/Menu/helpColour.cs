@@ -21,26 +21,41 @@ public class helpColour : MonoBehaviour {
           if (gameObject.name == "WorkObjectsButton") UpdateWorkButton();
      }
 
+     /// <summary>
+     /// Actualiza el color del botón de insertar terreno
+     /// </summary>
      private void UpdateTerrainButton() {
           Image img = btn.GetComponent<Image>();
           img.color = (GlobalVariables.TerrainIsLoad) ? DoneColor : transparent;
      }
 
+     /// <summary>
+     /// Actualiza el color del botón de insertar objetivos
+     /// </summary>
      private void UpdateObjectivesButton() {
           Image img = btn.GetComponent<Image>();
           img.color = (GlobalVariables.ObjectivesIsSelected) ? DoneColor : transparent;
      }
 
+     /// <summary>
+     /// Actualiza el color del botón de insertar recursos
+     /// </summary>
      private void UpdateResourcesButton() {
           Image img = btn.GetComponent<Image>();
           img.color = (GlobalVariables.ResourcesIsSelected) ? DoneColor : transparent;
      }
 
+     /// <summary>
+     /// Actualiza el color del botón de insertar efectos
+     /// </summary>
      private void UpdateEffectsButton() {
           Image img = btn.GetComponent<Image>();
           img.color = (GlobalVariables.FxIsSelected) ? DoneColor : transparent;
      }
 
+     /// <summary>
+     /// Actualiza el color del botón de Work Objects
+     /// </summary>
      private void UpdateWorkButton() {
           Image img = btn.GetComponent<Image>();
           img.color = (GlobalVariables.TerrainIsLoad &&

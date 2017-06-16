@@ -6,7 +6,7 @@ public class ButtonAddTerrain : MonoBehaviour {
 
      private Button btn;
      private LoadTerrain terrainConf = new LoadTerrain();
-
+     
      private void Start() {
           btn = GetComponent<Button>();
           btn.onClick.AddListener(TaskOnClick);

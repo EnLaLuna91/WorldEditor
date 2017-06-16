@@ -14,6 +14,9 @@ public class ExitGameMode : MonoBehaviour {
 
      #region Game Controller
 
+     /// <summary>
+     /// Busca el evento del GameController
+     /// </summary>
      private void InicializeGameController() {
           GameObject gameControllerObject = GameObject.FindWithTag("GameController");
           if (gameControllerObject != null) {
@@ -36,6 +39,9 @@ public class ExitGameMode : MonoBehaviour {
           
      }
 
+     /// <summary>
+     /// Modifica las camaras
+     /// </summary>
      private void ChangeCameras() {
           GlobalVariables.EditorCamera.enabled = !GlobalVariables.EditorCamera.enabled;
           GlobalVariables.HeroCamera.enabled = !GlobalVariables.HeroCamera.enabled;

@@ -41,6 +41,9 @@ public class ExtraButtons : MonoBehaviour {
 
      #region Game Controller
 
+     /// <summary>
+     /// Busca el evento del GameController
+     /// </summary>
      private void InicializeGameController() {
           GameObject gameControllerObject = GameObject.FindWithTag("GameController");
           if (gameControllerObject != null) {
@@ -60,6 +63,9 @@ public class ExtraButtons : MonoBehaviour {
           else if (gameObject.name == "ExitButton") ExitButton();
      }
 
+     /// <summary>
+     /// Guardar escena
+     /// </summary>
      private void SaveButton() {
           //Debug.Log("Save");
           // https://github.com/gkngkc/UnityStandaloneFileBrowser
@@ -72,6 +78,9 @@ public class ExtraButtons : MonoBehaviour {
           
      }
 
+     /// <summary>
+     /// Carga una escena
+     /// </summary>
      private void LoadButton() {
           //Debug.Log("Load");
 
@@ -83,6 +92,9 @@ public class ExtraButtons : MonoBehaviour {
           }
      }
 
+     /// <summary>
+     /// Ejecuta el juego
+     /// </summary>
      private void StartButton() {
           //Debug.Log("Start");
           gameController.DisableEditorMenus();
@@ -92,11 +104,19 @@ public class ExtraButtons : MonoBehaviour {
           hero.SetHero();
      }
 
+     /// <summary>
+     /// Sale del juego
+     /// </summary>
      private void ExitButton() {
           //Debug.Log("Leave");
           Application.Quit();
      }
 
+     /// <summary>
+     /// Se espera de forma asincrona, a que el usuario seleccione que elemento cargar
+     /// </summary>
+     /// <param name="url">Ruta que tendrá el visor de documentos</param>
+     /// <returns>Devuelve el elemento cargado</returns>
      private IEnumerator OutputRoutine(string url) {
           var loader = new WWW(url);
           yield return loader;

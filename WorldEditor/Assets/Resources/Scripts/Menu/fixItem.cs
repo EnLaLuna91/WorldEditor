@@ -36,7 +36,9 @@ public class fixItem : MonoBehaviour {
 
      }
 
-
+     /// <summary>
+     /// Deja el elemento seleccionado fijo en el mapa
+     /// </summary>
      private void InsertItem() {
           Debug.Log(string.Format("Insert Obj: {0}\tLayer: {1}", obj.name, Layer));
 
@@ -65,6 +67,9 @@ public class fixItem : MonoBehaviour {
           //Debug.Log(string.Format("ReadyToFix: {0}", ReadyToFix));
      }
 
+     /// <summary>
+     /// Permite rotar el elemento seleccionado
+     /// </summary>
      private void RotateItem() {
 
           if (GlobalVariables.IsShiftPressed) RotationItem.y -= 90;
@@ -77,6 +82,10 @@ public class fixItem : MonoBehaviour {
           //Debug.Log(string.Format("Rotation: {0}", RotationItem));
      }
 
+     /// <summary>
+     /// Lanza un RayCast para obtener la posición del terreno a la que apunta el ratón
+     /// </summary>
+     /// <returns>Vector3</returns>
      private Vector3 RayCast() {
           RaycastHit hitInfo;
           Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -86,6 +95,9 @@ public class fixItem : MonoBehaviour {
           else return new Vector3(0, 0, 0);
      }
 
+     /// <summary>
+     /// Inicializa el elemento a insertar y lo va desplazando por el mapa, según donde apunte el ratón
+     /// </summary>
      private void ShowItem() {
           Vector3 pos = RayCast();
           //Debug.Log(string.Format("ShowItem\tpos: {0}\tobj; {1}", pos, obj));
@@ -102,6 +114,11 @@ public class fixItem : MonoBehaviour {
           }
      }
 
+     /// <summary>
+     /// Modifica los layers de un elemento de forma recursa
+     /// </summary>
+     /// <param name="trans">Elemento a transformar</param>
+     /// <param name="name">Nombre del nuevo layer</param>
      private void ChangeLayerRecursive(Transform trans, string name) {
           foreach (Transform child in trans) {
                if (child.gameObject.layer != LayerMask.NameToLayer("Water")) {

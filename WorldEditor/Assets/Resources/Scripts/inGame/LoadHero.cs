@@ -5,7 +5,9 @@ public class LoadHero : MonoBehaviour {
      private GameObject levelStartPoint;
      private Hero _hero;
 
-
+     /// <summary>
+     /// Añade el heroe en la escena y cambia las camaras
+     /// </summary>
      public void SetHero() {
           Debug.Log(string.Format("SetHero"));
 
@@ -28,6 +30,10 @@ public class LoadHero : MonoBehaviour {
 
      }
 
+     /// <summary>
+     /// Obtiene la posición del "HeroSpamPoint"
+     /// </summary>
+     /// <returns>Booleano, dependiendo si lo ha encontrado o no</returns>
      private bool GetStartPoint() {
           levelStartPoint = GameObject.Find("HeroSpamPoint");
           //Debug.Log(string.Format("HeroSpamPoint\nPosition: {0}\tRotation: {1}", levelStartPoint.transform.position, levelStartPoint.transform.rotation));
@@ -37,6 +43,9 @@ public class LoadHero : MonoBehaviour {
           return false;
      }
 
+     /// <summary>
+     /// Carga la camara del Herore
+     /// </summary>
      private void LoadCamera() {
           //GlobalVariables.EditorCamera = Camera.main;
           if (GlobalVariables.HeroCamera == null) {
@@ -46,6 +55,9 @@ public class LoadHero : MonoBehaviour {
           }          
      }
 
+     /// <summary>
+     /// Cambia la camara, para ver al heroe
+     /// </summary>
      private void ChangeCameras() {
           GlobalVariables.EditorCamera.enabled = !GlobalVariables.EditorCamera.enabled;
           GlobalVariables.HeroCamera.enabled = !GlobalVariables.HeroCamera.enabled;

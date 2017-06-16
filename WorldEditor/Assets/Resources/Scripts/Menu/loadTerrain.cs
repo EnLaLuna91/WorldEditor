@@ -2,12 +2,19 @@
 
 public class LoadTerrain : MonoBehaviour {
 
+     /// <summary>
+     /// Añade un terreno a la escena
+     /// </summary>
+     /// <param name="Terrain">GameObject del terreno a insertar</param>
      public void SetTerrain(GameObject Terrain) {
           Vector3 pos = new Vector3(0.0f, 0.0f, 0.0f);
           Instantiate(Terrain, pos, Quaternion.identity);
           GlobalVariables.TerrainIsLoad = true;
      }
 
+     /// <summary>
+     /// Elimna todos los componentes que tiene un mapa y el mapa que hay en la escena
+     /// </summary>
      public void RemoveTerrain() {
           GameObject[] maps = GameObject.FindGameObjectsWithTag("Terrain");
           foreach (GameObject map in maps) {
@@ -19,6 +26,9 @@ public class LoadTerrain : MonoBehaviour {
           RemoveAllFXsOnMap();
      }
 
+     /// <summary>
+     /// Elimina los componentes del mapa
+     /// </summary>
      private void RemoveAllItemsOnMap() {
           GameObject[] objectives = GameObject.FindGameObjectsWithTag("Objectives");
           foreach (GameObject item in objectives) {
@@ -42,6 +52,9 @@ public class LoadTerrain : MonoBehaviour {
           GlobalVariables.NPCsIsSelected = false;
      }
 
+     /// <summary>
+     /// Elimina los efectos que hay en el mapa
+     /// </summary>
      private void RemoveAllFXsOnMap() {
           GameObject[] items = GameObject.FindGameObjectsWithTag("FX");
           foreach (GameObject item in items) {

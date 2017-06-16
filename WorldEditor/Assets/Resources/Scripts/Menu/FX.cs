@@ -32,6 +32,9 @@ public class FX : MonoBehaviour {
           if (isInsert && (GlobalVariables.YouWin || GlobalVariables.GameOver)) ActiveFX();
      }
 
+     /// <summary>
+     /// Inserta un FX en el mapa
+     /// </summary>
      private void InsertFX() {
           RaycastHit hitInfo;
           Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -46,6 +49,9 @@ public class FX : MonoBehaviour {
           if (GlobalVariables.IsCtrlPressed) ReadyToFix = true;
      }
 
+     /// <summary>
+     /// Determina el tipo de efecto, cuando se activará
+     /// </summary>
      private void ActiveFX() {
           if (Win) {
                GameObject obj = Instantiate(Effect, pos, Quaternion.identity) as GameObject;

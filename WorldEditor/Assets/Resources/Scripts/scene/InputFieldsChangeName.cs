@@ -22,6 +22,9 @@ public class InputFieldsChangeName : MonoBehaviour {
 
      #region Game Controller
 
+     /// <summary>
+     /// Busca el evento del GameController
+     /// </summary>
      private void InicializeGameController() {
           GameObject gameControllerObject = GameObject.FindWithTag("GameController");
           if (gameControllerObject != null) {
@@ -39,18 +42,26 @@ public class InputFieldsChangeName : MonoBehaviour {
           else if (gameObject.name == "Ok") SaveNameDesc();
      }
 
+     /// <summary>
+     /// Deja el nombre de la escena y objetivos de la misión como estaban antes de entrar y cierra la venta de cambiar nombre
+     /// </summary>
      private void ClearFields() {
           Name.text = GlobalVariables.SceneName;
           Desc.text = GlobalVariables.QuestDesc;
           gameController.EnableFieldName(false);
      }
 
+     /// <summary>
+     /// Guarda el nombre de la escena y los objetivos de la misión, actualiza el nombre en el recuadro superior izquierda y
+     /// cierra la ventana de cambio de nombre
+     /// </summary>
      private void SaveNameDesc() {
           GlobalVariables.SceneName = Name.text.ToUpper();
           GlobalVariables.QuestDesc = Desc.text;
           gameController.SetSceneName();          
           gameController.EnableFieldName(false);
      }
+
 
      private void Update() {
           if (FirstTimeEnter) {

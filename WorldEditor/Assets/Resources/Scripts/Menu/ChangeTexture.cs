@@ -35,6 +35,9 @@ public class ChangeTexture : MonoBehaviour {
           if (ReadyToFix && Input.GetMouseButtonDown(0)) ChangeMaterial();    
      }
 
+     /// <summary>
+     /// Modifica el material del item que se ha seleccionado
+     /// </summary>
      private void ChangeMaterial() {
           GameObject item = RayCast();
           Debug.Log(string.Format("Item: {0}\t Material: {1}", item, Texture));
@@ -56,6 +59,10 @@ public class ChangeTexture : MonoBehaviour {
           }
      }
 
+     /// <summary>
+     /// Se obtiene la posición de un elemento
+     /// </summary>
+     /// <returns>Vector3</returns>
      private GameObject RayCast() {
           RaycastHit hitInfo;
           Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -65,6 +72,10 @@ public class ChangeTexture : MonoBehaviour {
           } else return null;
      }
 
+     /// <summary>
+     /// Inserta o modifica el objeto y la textura a una lista de texturas modificadas, de cara a guardar la escena
+     /// </summary>
+     /// <param name="item"></param>
      private void AddOrUpdateItem(GameObject item) {
           if (ExistItem(item)) {
                var obj = GlobalVariables.ElementsToChangeTexture.FirstOrDefault(x => x.ItemID == item.GetInstanceID());
